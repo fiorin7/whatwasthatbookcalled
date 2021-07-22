@@ -1,0 +1,27 @@
+html {
+    font: 18px/1.5 "Karla", Helvetica, sans-serif;
+}
+
+body,
+form,
+table,
+input,
+textarea,
+option,
+select,
+button {
+    font: inherit;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+li {
+    display: block;
+}
+
+textarea {
+    resize: none;
+}

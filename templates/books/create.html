@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head_scripts %}
+<script defer src="{% static 'scripts/multipage_create_form.js' %}"></script>
+{% endblock head_scripts %}
+
+{% block body %}
+<h1>Tell us about the book you're looking for.</h1>
+<h2>The more details the better.</h2>
+<div class="form-container">
+    <nav class="form-nav">
+        <ul>
+            <li class="selected">Title and author</li>
+            <li>Publishing details</li>
+            <li>Plot</li>
+        </ul>
+    </nav>
+    <form action="{% url 'create' %}" method="POST" class="create-form">
+        <ul class="group-one">
+            <li>
+                {{ form.title_tips.errors }}
+                {{ form.title_tips.label_tag }}
+                {{ form.title_tips }}
+            </li>
+            <li>
+                {{ form.author_tips.errors }}
+                {{ form.author_tips.label_tag }}
+                {{ form.author_tips }}
+            </li>
+            <li>
+                {{ form.language.errors }}
+                {{ form.language.label_tag }}
+                {{ form.language }}
+            </li>
+            <div class="form-group-buttons"><button type="button" class="continue-btn">Continue</button></div>
+        </ul>
+        <ul class="group-two">
+            <li>
+                {{ form.year_written.errors }}
+                {{ form.year_written.label_tag }}
+                {{ form.year_written }}
+            </li>
+
+            <li>
+                {{ form.year_read.errors }}
+                {{ form.year_read.label_tag }}
+                {{ form.year_read }}
+            </li>
+
+            <li>
+                {{ form.part_of_series.errors }}
+                {{ form.part_of_series.label_tag }}
+                {{ form.part_of_series }}
+            </li>
+            <li>
+                {{ form.cover_description.errors }}
+                {{ form.cover_description.label_tag }}
+                {{ form.cover_description }}
+            </li>
+            <div class="form-group-buttons">
+                <button type="button" class="back-btn">Back</button>
+                <button type="button" class="continue-btn">Continue</button>
+            </div>
+        </ul>
+        <ul class="group-three">
+            <li>
+                {{ form.genre.errors }}
+                {{ form.genre.label_tag }}
+                {{ form.genre }}
+            </li>
+            <li>
+                {{ form.plot_details.errors }}
+                {{ form.plot_details.label_tag }}
+                {{ form.plot_details }}
+            </li>
+            <li>
+                {{ form.quotes.errors }}
+                {{ form.quotes.label_tag }}
+                {{ form.quotes }}
+            </li>
+            <li>
+                {{ form.additional_notes.errors }}
+                {{ form.additional_notes.label_tag }}
+                {{ form.additional_notes }}
+            </li>
+            <div class="form-group-buttons">
+                <button type="button" class="back-btn">Back</button>
+                <button type="submit">Done</button>
+            </div>
+        </ul>
+
+
+    </form>
+</div>
+{% endblock body %}

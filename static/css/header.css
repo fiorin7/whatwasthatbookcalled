@@ -1,0 +1,38 @@
+.site-nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5em 6em;
+    letter-spacing: 0.04em;
+    /*
+    background: rgb(58, 81, 180);
+    background: linear-gradient(
+        106deg,
+        rgba(58, 81, 180, 1) 0%,
+        rgba(88, 213, 255, 1) 59%,
+        rgba(255, 50, 99, 1) 100%
+    ); */
+    background: rgb(58, 81, 180);
+    background: linear-gradient(
+        106deg,
+        rgba(58, 81, 180, 1) 30%,
+        rgba(35, 200, 255, 1) 79%,
+        rgba(255, 50, 99, 1) 100%
+    );
+}
+
+.site-nav ul {
+    display: flex;
+}
+
+.site-nav li {
+    padding: 0.3em 0.9em;
+    text-transform: uppercase;
+}
+
+.site-nav a {
+    color: #f5faff;
+}
+
+.site-nav a:hover {
+    color: white;
+}

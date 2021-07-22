@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+
+    {% block head_scripts %}
+    {% endblock head_scripts %}
+
+    <title>books</title>
+</head>
+
+<body>
+    <nav class="site-nav">
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/books">All books</a></li>
+            <li><a href="/create-book">Describe your forgotten book</a></li>
+        </ul>
+        <ul class="profile-nav">
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+    <div class="site-main">{% block body %} {% endblock body %}</div>
+</body>
+
+</html>
