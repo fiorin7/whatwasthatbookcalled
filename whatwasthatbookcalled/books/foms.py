@@ -39,4 +39,5 @@ class BookForm(forms.ModelForm):
                 }
             ),
             "genre": forms.CheckboxSelectMultiple(),
+            "part_of_series": forms.NullBooleanSelect(),
         }
