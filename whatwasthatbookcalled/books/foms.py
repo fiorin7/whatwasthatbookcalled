@@ -43,4 +43,5 @@ class BookForm(forms.ModelForm):
                     "rows": 3,
                 }
             ),
+            "genre": forms.CheckboxSelectMultiple(),
         }
