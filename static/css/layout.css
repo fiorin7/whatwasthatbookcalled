@@ -94,17 +94,17 @@ body {
     margin: auto;
 }
 
-.create-form li {
+.create-form > ul > li {
     display: flex;
     align-items: flex-start;
 }
 
-.create-form li label {
+.create-form > ul > li label {
     width: 20%;
 }
 
-.create-form li input,
-.create-form li textarea {
+.create-form > ul > li input,
+.create-form > ul > li textarea {
     margin-left: 3em;
     background-color: #f1f1f1;
     border: 0.01em solid rgba(218, 208, 208, 0.5);
@@ -117,7 +117,7 @@ body {
     outline-color: rgba(160, 160, 160, 0.5);
 }
 
-.create-form li {
+.create-form > ul > li {
     margin: 1em 0;
 }
 
@@ -132,7 +132,7 @@ body {
     margin-top: 3em;
 }
 
-.create-form ul:first-child .continue-btn {
+.create-form .group-one .continue-btn {
     margin-left: auto;
 }
 
@@ -150,4 +150,48 @@ body {
 
 .create-form .back-btn {
     background-color: rgb(58, 81, 180);
+}
+
+.create-form .genre-choices input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.create-form .genre-choices input:checked + label {
+    background-color: rgba(255, 50, 99, 0.8);
+    color: white;
+}
+.create-form .genre-choices input:focus + label {
+    outline: solid 0.15em rgba(160, 160, 160, 0.5);
+}
+
+.genre-choices {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.genre-choices li:first-child {
+    display: none;
+}
+
+.create-form .genre-field {
+    flex-direction: column;
+}
+
+.genre-choices li {
+    font-size: 0.8em;
+    margin: 0.7em 0.5em;
+    /* overflow: hidden; */
+}
+
+.genre-choices label {
+    /* width: 100%; */
+    padding: 0.5em;
+    background-color: #f1f1f1;
+    border-radius: 0.3em;
 }
