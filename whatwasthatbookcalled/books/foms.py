@@ -8,11 +8,6 @@ class BookForm(forms.ModelForm):
         fields = "__all__"
 
         widgets = {
-            "opening_message": forms.Textarea(
-                attrs={
-                    "rows": 3,
-                }
-            ),
             "title_tips": forms.Textarea(
                 attrs={
                     "rows": 3,
