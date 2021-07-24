@@ -65,10 +65,18 @@
             </div>
         </ul>
         <ul class="group-three">
-            <li>
+            <li class="genre-field">
                 {{ form.genre.errors }}
                 {{ form.genre.label_tag }}
-                {{ form.genre }}
+                <ul id="id_genre" class="genre-choices">
+                    {% for choice_id, choice_label in form.genre.field.choices %}
+                    <li>
+                        <input type="checkbox" name="genre" value={{choice_id}} id="{{choice_id}}">
+                        <label for="{{choice_id}}">{{choice_label}}</label>
+
+                    </li>
+                    {% endfor %}
+                </ul>
             </li>
             <li>
                 {{ form.plot_details.errors }}
