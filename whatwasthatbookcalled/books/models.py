@@ -1,4 +1,5 @@
 from django.db import models
+from languages import languages
 
 
 class BookGenre(models.Model):
@@ -17,7 +18,7 @@ class Book(models.Model):
 
     title_tips = models.TextField(blank=True)
     author_tips = models.TextField(blank=True)
-    language = models.CharField(max_length=50, blank=True)
+    language = models.CharField(max_length=50, blank=True, choices=languages)
     year_written = models.IntegerField(blank=True, null=True)
     year_read = models.PositiveIntegerField(blank=True, null=True)
     part_of_series = models.BooleanField(null=True, choices=PART_OF_SERIES_CHOICES)
