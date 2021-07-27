@@ -1,4 +1,5 @@
 from django import forms
+from django.db.models import QuerySet
 from .models import Book
 
 
@@ -41,3 +42,18 @@ class BookForm(forms.ModelForm):
             "genre": forms.CheckboxSelectMultiple(),
             "part_of_series": forms.NullBooleanSelect(),
         }
+
+    def clean(self):
+        super().clean()
+        form_empty = True
+        for field_value in self.cleaned_data.values():
+            if (
+                field_value is not None
+                and field_value != ""
+                and not (isinstance(field_value, QuerySet) and len(field_value) == 0)
+            ):
+                form_empty = False
+                break
+
+        if form_empty:
+            raise forms.ValidationError("You must fill at least one field!")

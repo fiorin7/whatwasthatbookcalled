@@ -18,6 +18,7 @@
     </nav>
     <form action="{% url 'create' %}" method="POST" class="create-form">
         {% csrf_token %}
+        {{form.non_field_errors}}
         <ul class="group-one">
             <li>
                 {{ form.title_tips.errors }}
