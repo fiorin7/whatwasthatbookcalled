@@ -21,7 +21,9 @@ class Book(models.Model):
     language = models.CharField(max_length=50, blank=True, choices=languages)
     year_written = models.IntegerField(blank=True, null=True)
     year_read = models.PositiveIntegerField(blank=True, null=True)
-    part_of_series = models.BooleanField(null=True, choices=PART_OF_SERIES_CHOICES)
+    part_of_series = models.BooleanField(
+        null=True, blank=True, choices=PART_OF_SERIES_CHOICES
+    )
     cover_description = models.TextField(blank=True)
     genre = models.ManyToManyField(blank=True, to=BookGenre)
     plot_details = models.TextField(blank=True)
