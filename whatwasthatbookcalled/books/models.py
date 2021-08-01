@@ -29,3 +29,4 @@ class Book(models.Model):
     plot_details = models.TextField(blank=True)
     quotes = models.TextField(blank=True)
     additional_notes = models.TextField(blank=True)
+    solved = models.BooleanField(default=False)
