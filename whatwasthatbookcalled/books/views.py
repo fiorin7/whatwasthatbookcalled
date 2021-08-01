@@ -1,4 +1,36 @@
+from django.shortcuts import redirect, render
 from django.db.models import QuerySet
+
+from whatwasthatbookcalled.books.models import Book
+from whatwasthatbookcalled.books.foms import BookForm, FilterForm, SortForm
+from languages import languages
+
+
+def index(req):
+    filter_form = FilterForm(req.GET)
+    sort_form = SortForm(req.GET)
+    context = {"languages": languages}
+    books = Book.objects.all()
+
+    language = req.GET.get("language")
+    genre = req.GET.get("genre")
+    solved = req.GET.get("solved")
+
+    sort_by = req.GET.get("sort_by")
+    descending = req.GET.get("descending")
+
+    if language:
+        books = books.filter(language=language)
+    if genre:
+        books = books.filter(genre=genre)
+    if solved:
+        books = books.filter(solved=solved)
+
+    context["books"] = books
+    context["filter_form"] = filter_form
+    context["sort_form"] = sort_form
+
+    return render(req, "books/index.html", context=context)
 
 
 def create(req):
