@@ -33,5 +33,5 @@ class Book(models.Model):
     solved = models.BooleanField(default=False)
     last_modified = models.DateTimeField(auto_now=True)
     filled_fields_count = models.PositiveIntegerField(
-        blank=True, validators=[MinValueValidator(2), MaxValueValidator(11)]
+        validators=[MinValueValidator(2), MaxValueValidator(11)]
     )
