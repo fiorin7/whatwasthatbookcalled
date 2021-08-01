@@ -1,6 +1,7 @@
 from django import forms
-from django.db.models import QuerySet
-from .models import Book
+from django.forms.widgets import CheckboxInput, Select
+from whatwasthatbookcalled.books.models import Book, BookGenre
+from languages import languages
 
 
 class BookForm(forms.ModelForm):
@@ -56,5 +57,38 @@ class BookForm(forms.ModelForm):
                 "You must fill at least one of the following fields: Plot details, Quotes or Cover description!"
             )
 
-        if form_empty:
-            raise forms.ValidationError("You must fill at least one field!")
+
+class FilterForm(forms.Form):
+    GENRES_CHOICES = [(x.id, x.name) for x in BookGenre.objects.all()]
+    SOVED_CHOICES = ((None, "-------"), (True, "Solved"), (False, "Not solved"))
+
+    language = forms.ChoiceField(
+        required=False,
+        choices=[("", "------------")] + languages,
+        widget=Select(attrs={"onchange": "this.form.submit();"}),
+    )
+    genre = forms.ChoiceField(
+        required=False,
+        choices=[("", "------------")] + GENRES_CHOICES,
+        widget=Select(attrs={"onchange": "this.form.submit();"}),
+    )
+    solved = forms.BooleanField(
+        required=False,
+        widget=Select(choices=SOVED_CHOICES, attrs={"onchange": "this.form.submit();"}),
+    )
+
+
+class SortForm(forms.Form):
+    SORT_CHOICES = (
+        ("date", "Posting date"),
+        ("popularity", "Popularity"),
+        ("info-amount", "Amount of information provided"),
+    )
+    sort_by = forms.ChoiceField(
+        choices=SORT_CHOICES,
+        widget=Select(attrs={"onchange": "this.form.submit();"}),
+        required=False,
+    )
+    descending = forms.BooleanField(
+        widget=CheckboxInput(attrs={"onchange": "this.form.submit();"}), required=False
+    )
