@@ -1,3 +1,4 @@
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from languages import languages
 
@@ -30,3 +31,7 @@ class Book(models.Model):
     quotes = models.TextField(blank=True)
     additional_notes = models.TextField(blank=True)
     solved = models.BooleanField(default=False)
+    last_modified = models.DateTimeField(auto_now=True)
+    filled_fields_count = models.PositiveIntegerField(
+        blank=True, validators=[MinValueValidator(2), MaxValueValidator(11)]
+    )
