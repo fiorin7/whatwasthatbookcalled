@@ -20,7 +20,7 @@ class Book(models.Model):
     author_tips = models.TextField(blank=True)
     language = models.CharField(max_length=50, blank=True, choices=languages)
     year_written = models.IntegerField(blank=True, null=True)
-    year_read = models.PositiveIntegerField(blank=True, null=True)
+    year_read = models.PositiveIntegerField()
     part_of_series = models.BooleanField(
         null=True, blank=True, choices=PART_OF_SERIES_CHOICES
     )
