@@ -1,0 +1,73 @@
+.site-index {
+    margin-left: 3em;
+    margin-right: 3em;
+}
+
+.index-header {
+    display: flex;
+    background-color: red;
+}
+
+.sort-title {
+    margin-left: auto;
+    font-size: 1em;
+    font-weight: normal;
+}
+
+.book-list ul {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.book {
+    position: relative;
+    padding: 2em 1em 1em;
+    background-color: white;
+    margin: 1em;
+    box-shadow: 0 0 0.5em rgba(1, 1, 1, 0.1);
+    width: 20em;
+    border-radius: 0.2em;
+}
+
+.solved-icon {
+    width: 2em;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.genres-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1.5em;
+}
+
+.genre {
+    white-space: nowrap;
+    background-color: tomato;
+    margin: 0.2em;
+    padding: 0.2em 0.5em;
+    color: white;
+    border-radius: 0.2em;
+}
+
+.year-read {
+    margin-top: 1em;
+}
+
+.posted {
+    margin-left: auto;
+}
+
+.plot {
+    background-color: rgba(250, 97, 70, 0.2);
+    padding: 0.5em;
+    border-radius: 0.2em;
+}
+
+.book-footer {
+    display: flex;
+    margin-top: 2em;
+    color: rgb(141, 141, 141);
+}

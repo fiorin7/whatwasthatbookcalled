@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="site-main site-index">
+    <div class="filter">
+        <ul>
+            <form>
+                {{filter_form}}
+            </form>
+        </ul>
+
+    </div>
+
+    <div class="index-header">
+        <h3 class="sort-title">Sort by</h3>
+        <form>{{sort_form}}</form>
+        {% comment %} <select name="sort" id="sort">
+            <option value="date">Posting date</option>
+            <option value="popularity">Popularity</option>
+            <option value="info-amount">Amount of information provided</option>
+        </select> {% endcomment %}
+    </div>
+
+    <div class="book-list">
+        <ul>
+
+            {% for book in books %}
+            <li class="book">
+                <img class="solved-icon" src="https://img.icons8.com/plasticine/100/000000/checked-2.png" />
+                <div class="plot">{{book.plot_details | truncatewords:20}}</div>
+
+                <ul class="genres-list">
+                    {% for genre in book.genre.all %}
+                    <li class="genre">{{genre}}</li>
+                    {% endfor %}
+                </ul>
+
+                <p class="year-read">Year read: {{book.year_read}}</p>
+
+                <div class="book-footer">
+                    <p>0 comments</p>
+                    <p class="posted">1h ago</p>
+                </div>
+
+            </li>
+            {% endfor %}
+
+        </ul>
+    </div>
+</div>
+
+
+{% endblock body %}
