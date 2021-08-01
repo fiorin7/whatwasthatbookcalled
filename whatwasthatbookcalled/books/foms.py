@@ -6,7 +6,7 @@ from .models import Book
 class BookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = "__all__"
+        exclude = ["solved", "filled_fields_count"]
 
         widgets = {
             "title_tips": forms.Textarea(
