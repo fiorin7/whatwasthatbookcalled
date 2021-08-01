@@ -45,15 +45,16 @@ class BookForm(forms.ModelForm):
 
     def clean(self):
         super().clean()
-        form_empty = True
-        for field_value in self.cleaned_data.values():
-            if (
-                field_value is not None
-                and field_value != ""
-                and not (isinstance(field_value, QuerySet) and len(field_value) == 0)
-            ):
-                form_empty = False
-                break
+        if not any(
+            (
+                self.cleaned_data["plot_details"],
+                self.cleaned_data["quotes"],
+                self.cleaned_data["cover_description"],
+            )
+        ):
+            raise forms.ValidationError(
+                "You must fill at least one of the following fields: Plot details, Quotes or Cover description!"
+            )
 
         if form_empty:
             raise forms.ValidationError("You must fill at least one field!")
