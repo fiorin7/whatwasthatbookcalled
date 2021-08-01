@@ -1,4 +1,4 @@
-languages = (
+languages = [
     ("Other", "Other"),
     ("Acehnese", "Acehnese"),
     ("Afrikaans", "Afrikaans"),
@@ -151,4 +151,4 @@ languages = (
     ("Yiddish", "Yiddish"),
     ("Yoruba", "Yoruba"),
     ("Zazaki", "Zazaki"),
-)
+]
