@@ -10,9 +10,22 @@ def index(req):
     filter_sort_form = FilterSortForm(req.GET)
     context = {"languages": languages}
 
-    language = req.GET.get("language")
-    genre = req.GET.get("genre")
-    solved = req.GET.get("solved")
+    filter_params = ["language", "genre", "solved"]
+
+    filters = {}
+    for f in filter_params:
+        value = req.GET.get(f)
+        if value is not None and value != "":
+            filters[f] = value
+
+    books = Book.objects.filter(**filters).only(
+        "year_read",
+        "plot_details",
+        "cover_description",
+        "quotes",
+        "solved",
+        "genre",
+    )
 
     sort_by = req.GET.get("sort_by")
     descending = req.GET.get("descending")
