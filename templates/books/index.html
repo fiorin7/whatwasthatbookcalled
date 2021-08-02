@@ -39,7 +39,11 @@
 
                 <div class="book-footer">
                     <p>0 comments</p>
-                    <p class="posted">1h ago</p>
+                    <p class="posted">{{book.time}}
+                        {% if book.time_unit %}
+                        {{book.time_unit}} ago
+                        {% endif %}
+                    </p>
                 </div>
 
             </li>
