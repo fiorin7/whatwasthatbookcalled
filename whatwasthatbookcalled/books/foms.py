@@ -58,9 +58,14 @@ class BookForm(forms.ModelForm):
             )
 
 
-class FilterForm(forms.Form):
+class FilterSortForm(forms.Form):
     GENRES_CHOICES = [(x.id, x.name) for x in BookGenre.objects.all()]
     SOVED_CHOICES = ((None, "-------"), (True, "Solved"), (False, "Not solved"))
+    SORT_CHOICES = (
+        ("date", "Posting date"),
+        ("popularity", "Popularity"),
+        ("info-amount", "Amount of information provided"),
+    )
 
     language = forms.ChoiceField(
         required=False,
@@ -77,18 +82,11 @@ class FilterForm(forms.Form):
         widget=Select(choices=SOVED_CHOICES, attrs={"onchange": "this.form.submit();"}),
     )
 
-
-class SortForm(forms.Form):
-    SORT_CHOICES = (
-        ("date", "Posting date"),
-        ("popularity", "Popularity"),
-        ("info-amount", "Amount of information provided"),
-    )
     sort_by = forms.ChoiceField(
         choices=SORT_CHOICES,
         widget=Select(attrs={"onchange": "this.form.submit();"}),
         required=False,
     )
-    descending = forms.BooleanField(
+    reverse_order = forms.BooleanField(
         widget=CheckboxInput(attrs={"onchange": "this.form.submit();"}), required=False
     )

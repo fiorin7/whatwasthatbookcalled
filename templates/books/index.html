@@ -5,7 +5,7 @@
     <div class="filter">
         <ul>
             <form>
-                {{filter_form}}
+                {{filter_sort_form}}
             </form>
         </ul>
 
@@ -13,7 +13,7 @@
 
     <div class="index-header">
         <h3 class="sort-title">Sort by</h3>
-        <form>{{sort_form}}</form>
+        {% comment %} <form>{{sort_form}}</form> {% endcomment %}
         {% comment %} <select name="sort" id="sort">
             <option value="date">Posting date</option>
             <option value="popularity">Popularity</option>
