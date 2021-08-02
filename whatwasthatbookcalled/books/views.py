@@ -28,14 +28,13 @@ def index(req):
     )
 
     sort_by = req.GET.get("sort_by")
-    descending = req.GET.get("descending")
+    reverse_order = req.GET.get("reverse_order")
+    order_prefix = "" if reverse_order else "-"
 
-    if language:
-        books = books.filter(language=language)
-    if genre:
-        books = books.filter(genre=genre)
-    if solved:
-        books = books.filter(solved=solved)
+    if sort_by is None or sort_by == "date":
+        books = books.order_by(order_prefix + "last_modified")
+    elif sort_by == "info-amount":
+        books = books.order_by(order_prefix + "filled_fields_count")
 
     context["books"] = books
     context["filter_sort_form"] = filter_sort_form
