@@ -27,7 +27,20 @@
             {% for book in books %}
             <li class="book">
                 <img class="solved-icon" src="https://img.icons8.com/plasticine/100/000000/checked-2.png" />
-                <div class="plot">{{book.plot_details | truncatewords:20}}</div>
+                <div class="main-book-info {{book.main_field | slugify}}">
+                    <h3 class="main-book-info-label">
+                        {{book.main_field | capfirst}}
+                    </h3>
+                    <div class="main-book-info_body">
+                        {% if book.plot_details %}
+                        {{book.plot_details | truncatewords:20}}
+                        {% elif book.quotes %}
+                        {{book.quotes | truncatewords:20}}
+                        {% elif book.cover_description %}
+                        {{book.cover_description | truncatewords:20}}
+                        {% endif %}
+                    </div>
+                </div>
 
                 <ul class="genres-list">
                     {% for genre in book.genre.all %}
