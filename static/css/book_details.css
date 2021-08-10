@@ -1,0 +1,9 @@
+.book-details {
+    width: 60em;
+    margin: auto;
+}
+
+.field-label {
+    margin-top: 1em;
+    background-color: brown;
+}

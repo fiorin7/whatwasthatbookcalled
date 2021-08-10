@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="site-main book-details">
+    <div class="fields">
+        {% for label, field in book_fields.items %}
+        <div class="field">
+            <span class="field-label">{{label}}</span>
+            <p>{{field}}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="comments">
+        <form method="POST">
+            {{comment_form}}
+            <button type="submit">Post</button>
+        </form>
+
+        {% for comment in comments %}
+        <div class="comment">
+            <span class="username">{{comment.user}}</span>
+            <p>{{comment.text}}</p>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock body %}

@@ -4,7 +4,7 @@ from django.shortcuts import redirect, render
 from django.db.models import QuerySet
 
 from whatwasthatbookcalled.books.models import Book
-from whatwasthatbookcalled.books.foms import BookForm, FilterSortForm
+from whatwasthatbookcalled.books.foms import BookForm, CommentForm, FilterSortForm
 from languages import languages
 
 
@@ -101,3 +101,52 @@ def create(req):
             print(req.POST)
             print("INVALID")
             return render(req, "books/create.html", context={"form": form})
+
+
+def details(req, id):
+    book = Book.objects.get(id=id)
+    book_fields = {
+        "Title tips": book.title_tips,
+        "Author tips": book.author_tips,
+        "Language": book.language,
+        "Year written": book.year_written,
+        "Year read": book.year_read,
+        "Cover description": book.cover_description,
+        "Genre": book.genre,
+        "Plot details": book.plot_details,
+        "Quotes": book.quotes,
+        "Additional notes": book.additional_notes,
+    }
+    comments = book.comment_set.all().order_by("-last_modified")
+
+    if req.method == "GET":
+        comment_form = CommentForm()
+
+        return render(
+            req,
+            "books/details.html",
+            context={
+                "book_fields": book_fields,
+                "comment_form": comment_form,
+                "comments": comments,
+            },
+        )
+
+    comment_form = CommentForm(req.POST)
+    if comment_form.is_valid():
+        comment = comment_form.save(commit=False)
+        comment.user = req.user
+        comment.book = book
+        comment.save()
+        return redirect("details", id)
+
+    else:
+        return render(
+            req,
+            "books/details.html",
+            context={
+                "book_fields": book_fields,
+                "comment_form": comment_form,
+                "comments": comments,
+            },
+        )
