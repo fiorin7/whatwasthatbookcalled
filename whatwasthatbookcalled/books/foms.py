@@ -7,7 +7,7 @@ from languages import languages
 class BookForm(forms.ModelForm):
     class Meta:
         model = Book
-        exclude = ["solved", "filled_fields_count"]
+        exclude = ["solved", "filled_fields_count", "user"]
 
         widgets = {
             "title_tips": forms.Textarea(

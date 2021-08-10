@@ -1,3 +1,5 @@
+from django.db.models.deletion import CASCADE
+from whatwasthatbookcalled.books_auth.models import BookUser
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from languages import languages
@@ -35,3 +37,5 @@ class Book(models.Model):
     filled_fields_count = models.PositiveIntegerField(
         validators=[MinValueValidator(2), MaxValueValidator(11)]
     )
+    user = models.ForeignKey(to=BookUser, on_delete=CASCADE)
+

@@ -84,6 +84,8 @@ def create(req):
         if form.is_valid():
             book = form.save(commit=False)
 
+            book.user = req.user
+
             filled_fields = [
                 x
                 for x in form.cleaned_data.values()
