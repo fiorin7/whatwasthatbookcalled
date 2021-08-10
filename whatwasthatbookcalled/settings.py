@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "whatwasthatbookcalled.books",
     "whatwasthatbookcalled.books_auth",
+    "whatwasthatbookcalled.profiles",
 ]
 
 MIDDLEWARE = [
