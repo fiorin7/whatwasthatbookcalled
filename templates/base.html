@@ -38,7 +38,9 @@
         </svg>
         <ul class="profile-nav">
             <li><a href="/profile">Profile</a></li>
-            <li><a href="/logout">Logout</a></li>
+            <li><a href={% url 'sign out' %}>Logout</a></li>
+            <li><a href={% url 'sign in' %}>Sign in</a></li>
+            <li><a href={% url 'sign up' %}>Sign up</a></li>
         </ul>
     </nav>
     {% block body %} {% endblock body %}

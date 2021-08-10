@@ -1,0 +1,11 @@
+<div class="site-main">
+    <div class="register-container">
+        <div class="side-banner">
+            <p>Join now and let our users help you in your book search.</p>
+            <p>And don't forget to help others if you recognize a book.</p>
+        </div>
+        <form method="POST">
+            {% csrf_token %}{{form}} <button type="submit">Register</button>
+        </form>
+    </div>
+</div>
