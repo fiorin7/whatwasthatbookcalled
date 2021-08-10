@@ -39,3 +39,10 @@ class Book(models.Model):
     )
     user = models.ForeignKey(to=BookUser, on_delete=CASCADE)
 
+
+class Comment(models.Model):
+    text = models.TextField()
+    user = models.ForeignKey(to=BookUser, on_delete=CASCADE)
+    book = models.ForeignKey(to=Book, on_delete=CASCADE)
+    last_modified = models.DateTimeField(auto_now=True)
+    is_solution = models.BooleanField(default=False)

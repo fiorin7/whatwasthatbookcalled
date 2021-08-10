@@ -1,6 +1,6 @@
 from django import forms
 from django.forms.widgets import CheckboxInput, Select
-from whatwasthatbookcalled.books.models import Book, BookGenre
+from whatwasthatbookcalled.books.models import Book, BookGenre, Comment
 from languages import languages
 
 
@@ -90,3 +90,9 @@ class FilterSortForm(forms.Form):
     reverse_order = forms.BooleanField(
         widget=CheckboxInput(attrs={"onchange": "this.form.submit();"}), required=False
     )
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ("text",)
