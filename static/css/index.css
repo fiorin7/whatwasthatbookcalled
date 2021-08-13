@@ -3,75 +3,117 @@
     margin-right: 3em;
 }
 
-.index-header {
-    display: flex;
-    background-color: red;
-}
-
 .sort-title {
     margin-left: auto;
     font-size: 1em;
     font-weight: normal;
 }
 
-.book-list ul {
+.book-list > ul {
     display: flex;
-    align-items: flex-start;
+    /* align-items: flex-start; */
     flex-wrap: wrap;
+    /* justify-content: space-between; */
 }
 
-.book {
+.book-list .book {
     position: relative;
     padding: 2em 1em 1em;
     background-color: white;
     margin: 1em;
     box-shadow: 0 0 0.5em rgba(1, 1, 1, 0.1);
-    width: 20em;
+    min-width: 20em;
+    flex-basis: 30%;
     border-radius: 0.2em;
+    display: flex;
+    flex-direction: column;
+    min-height: 25em;
 }
 
 .solved-icon {
     width: 2em;
     position: absolute;
-    right: 0;
+    right: -1em;
     top: 0;
+    color: green;
+    font-size: 1.5em;
 }
 
 .genres-list {
     display: flex;
     flex-wrap: wrap;
     margin-top: 1.5em;
+    justify-content: flex-start;
 }
 
-.genre {
+.genres-list .genre {
     white-space: nowrap;
-    background-color: tomato;
+    background-color: rgba(101, 60, 143, 1);
+
     margin: 0.2em;
     padding: 0.2em 0.5em;
     color: white;
     border-radius: 0.2em;
 }
 
-.year-read {
-    margin-top: 1em;
+.book .year-read {
+    margin-top: 2em;
+    border: 0.1em solid rgba(114, 17, 114, 0.6);
+    width: 9em;
+    padding: 0.2em 0.5em;
+    border-radius: 0.3em;
+    text-align: center;
+    margin-top: auto;
 }
 
 .posted {
     margin-left: auto;
 }
 
-.plot {
-    background-color: rgba(250, 97, 70, 0.2);
-    padding: 0.5em;
+.main-book-info {
+    padding: 0.5em 0.8em;
     border-radius: 0.2em;
+    background-position: center;
+    position: relative;
+    border-radius: 0.2em;
+    overflow: hidden;
+}
+
+.main-book-info > * {
+    color: white;
+    z-index: 1;
+    position: relative;
+}
+
+.main-book-info:after {
+    display: block;
+    content: "";
+    /* background-color: rgba(71, 35, 107, 0.95); */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 .book-footer {
     display: flex;
-    margin-top: 2em;
     color: rgb(141, 141, 141);
+    margin-top: 1em;
 }
 
+.main-book-info.cover-description:after {
+    background-color: rgba(62, 94, 143, 0.95);
+}
+
+.main-book-info.plot:after {
+    /* background-color: rgba(250, 97, 70, 0.2); */
+    background-color: rgba(71, 35, 107, 0.95);
+}
+
+.main-book-info.quotes:after {
+    background-color: rgba(92, 114, 92, 0.95);
+}
 
 #id_reverse_order {
     width: 0.1px;

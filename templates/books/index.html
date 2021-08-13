@@ -35,57 +35,52 @@
 
     </div>
 
-    <div class="index-header">
-        <h3 class="sort-title">Sort by</h3>
-        {% comment %} <form>{{sort_form}}</form> {% endcomment %}
-        {% comment %} <select name="sort" id="sort">
-            <option value="date">Posting date</option>
-            <option value="popularity">Popularity</option>
-            <option value="info-amount">Amount of information provided</option>
-        </select> {% endcomment %}
-    </div>
 
     <div class="book-list">
         <ul>
 
             {% for book in books %}
-            <li class="book">
-                <a href={% url 'details' book.id %}>
-                    <img class=" solved-icon" src="https://img.icons8.com/plasticine/100/000000/checked-2.png" />
-                    <div class="main-book-info {{book.main_field | slugify}}">
-                        <h3 class="main-book-info-label">
-                            {{book.main_field | capfirst}}
-                        </h3>
-                        <div class="main-book-info_body">
-                            {% if book.plot_details %}
-                            {{book.plot_details | truncatewords:20}}
-                            {% elif book.quotes %}
-                            {{book.quotes | truncatewords:20}}
-                            {% elif book.cover_description %}
-                            {{book.cover_description | truncatewords:20}}
-                            {% endif %}
-                        </div>
+            <a class="book" href={% url 'details' book.id %}>
+
+                {% if book.solved %}
+                <i class="fas fa-check-circle solved-icon"></i>
+
+                {% endif %}
+
+                <div class="main-book-info {{book.main_field | slugify}}"
+                    style="background-image: url({% static 'books.jpg' %});">
+                    <h3 class="main-book-info-label">
+                        {{book.main_field | capfirst}}
+                    </h3>
+                    <div class="main-book-info_body">
+                        {% if book.plot_details %}
+                        {{book.plot_details | truncatewords:25}}
+                        {% elif book.quotes %}
+                        {{book.quotes | truncatewords:25}}
+                        {% elif book.cover_description %}
+                        {{book.cover_description | truncatewords:25}}
+                        {% endif %}
                     </div>
+                </div>
 
-                    <ul class="genres-list">
-                        {% for genre in book.genre.all %}
-                        <li class="genre">{{genre}}</li>
-                        {% endfor %}
-                    </ul>
+                <ul class="genres-list">
+                    {% for genre in book.genre.all %}
+                    <li class="genre">{{genre}}</li>
+                    {% endfor %}
+                </ul>
 
-                    <p class="year-read">Year read: {{book.year_read}}</p>
+                <p class="year-read">Year read: {{book.year_read}}</p>
 
-                    <div class="book-footer">
-                        <p>0 comments</p>
-                        <p class="posted">{{book.time}}
-                            {% if book.time_unit %}
-                            {{book.time_unit}} ago
-                            {% endif %}
-                        </p>
-                    </div>
-                </a>
+                <div class="book-footer">
+                    <p>{{book.comment_count}} comments</p>
+                    <p class="posted">{{book.time}}
+                        {% if book.time_unit %}
+                        {{book.time_unit}} ago
+                        {% endif %}
+                    </p>
+                </div>
+            </a>
 
-            </li>
             {% endfor %}
 
         </ul>
