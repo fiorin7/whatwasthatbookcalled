@@ -41,26 +41,6 @@ def index(req):
         books = books.order_by(order_prefix + "filled_fields_count")
 
     for book in books:
-        timedelta = datetime.now(timezone.utc) - book.last_modified
-        days = timedelta.days
-        hours = timedelta.total_seconds() // 3600
-        minutes = timedelta.total_seconds() // 60
-
-        book_time = "just now"
-        book_time_unit = None
-
-        if days > 0:
-            book_time = days
-            book_time_unit = "days"
-        elif hours > 0:
-            book_time = int(hours)
-            book_time_unit = "hours"
-        elif minutes > 0:
-            book_time = int(minutes)
-            book_time_unit = "minutes"
-
-        book.time = book_time
-        book.time_unit = book_time_unit
 
         book.comment_count = book.comment_set.all().count()
 

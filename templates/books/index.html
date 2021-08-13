@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load custom_timesince %}
 
 {% block body %}
 <div class="site-main site-index">
@@ -73,10 +74,9 @@
 
                 <div class="book-footer">
                     <p>{{book.comment_count}} comments</p>
-                    <p class="posted">{{book.time}}
-                        {% if book.time_unit %}
-                        {{book.time_unit}} ago
-                        {% endif %}
+
+                    <p class="posted">
+                        {{book.last_modified|custom_timesince}}
                     </p>
                 </div>
             </a>

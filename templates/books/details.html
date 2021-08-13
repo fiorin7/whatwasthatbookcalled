@@ -1,4 +1,6 @@
 {% extends 'base.html' %} {% block body %}
+{% load custom_timesince %}
+
 <div class="site-main book-details">
     <div class="author">
         <img src={{book_user_photo.url}} alt="profile-picture" />
@@ -61,16 +63,16 @@
             <div class="comment-body">
                 <div class="comment-header"><span class="username">{{comment.user}}</span>
 
+                    <span class="posted-time">{{comment.last_modified|custom_timesince }}</span>
+
                     {% if current_user_id == book_user_id and not book_solved%}
                     <a href={% url 'solution pick' book_id comment.id %}><i class="fas fa-check-square"></i>
                         Mark as solution</a>
                     {% endif %}
 
-
                     {% if comment.is_solution %}
                     <span class="solution-badge"><i class="fas fa-check-square"></i>SOLUTION</span>
                     {% endif %}
-
 
                 </div>
                 <p>{{comment.text}}</p>
