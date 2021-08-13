@@ -39,6 +39,15 @@ class Book(models.Model):
     )
     user = models.ForeignKey(to=BookUser, on_delete=CASCADE)
 
+    @property
+    def main_field(self):
+        if self.plot_details:
+            return "plot"
+        elif self.quotes:
+            return "quotes"
+        elif self.cover_description:
+            return "cover description"
+
 
 class Comment(models.Model):
     text = models.TextField()

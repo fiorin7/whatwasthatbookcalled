@@ -62,13 +62,7 @@ def index(req):
         book.time = book_time
         book.time_unit = book_time_unit
 
-    for book in books:
-        if book.plot_details:
-            book.main_field = "plot"
-        elif book.quotes:
-            book.main_field = "quotes"
-        elif book.cover_description:
-            book.main_field = "cover description"
+        book.comment_count = book.comment_set.all().count()
 
     context["books"] = books
     context["filter_sort_form"] = filter_sort_form
