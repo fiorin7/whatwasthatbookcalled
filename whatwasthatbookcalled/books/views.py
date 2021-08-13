@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 from django.shortcuts import redirect, render
 from django.db.models import QuerySet
 
-from whatwasthatbookcalled.books.models import Book
+from whatwasthatbookcalled.books.models import Book, Comment
 from whatwasthatbookcalled.books.foms import BookForm, CommentForm, FilterSortForm
 from whatwasthatbookcalled.profiles.models import Profile
 from languages import languages
@@ -183,3 +183,19 @@ def details(req, id):
                 "current_user_id": current_user.id,
             },
         )
+
+
+def mark_comment_as_solution(req, book_id, comment_id):
+    book = Book.objects.get(id=book_id)
+    comment = Comment.objects.get(id=comment_id)
+
+    if not book.solved and req.user == book.user:
+        book.solved = True
+        book.save()
+
+        comment.is_solution = True
+        comment.save()
+
+        return redirect("details", book_id)
+    else:
+        return redirect("details", book.id)
