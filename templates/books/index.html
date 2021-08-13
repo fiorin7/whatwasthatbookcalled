@@ -1,11 +1,35 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block body %}
 <div class="site-main site-index">
-    <div class="filter">
+    <div class="filter-sort">
         <ul>
             <form>
-                {{filter_sort_form}}
+                {{filter_sort_form.language.errors}}
+                {{filter_sort_form.language.label_tag}}
+                {{filter_sort_form.language}}
+
+                {{filter_sort_form.genre.errors}}
+                {{filter_sort_form.genre.label_tag}}
+                {{filter_sort_form.genre}}
+
+                {{filter_sort_form.solved.errors}}
+                {{filter_sort_form.solved.label_tag}}
+                {{filter_sort_form.solved}}
+
+                <div class="sort-fields">
+                    {{filter_sort_form.sort_by.errors}}
+                    {{filter_sort_form.sort_by.label_tag}}
+                    <div class="sort-inputs">
+                        {{filter_sort_form.sort_by}}
+
+                        {{filter_sort_form.reverse_order.errors}}
+                        {{filter_sort_form.reverse_order}}
+                        {{filter_sort_form.reverse_order.label_tag}}
+                    </div>
+                </div>
+
             </form>
         </ul>
 

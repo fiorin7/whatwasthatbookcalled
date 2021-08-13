@@ -71,3 +71,45 @@
     margin-top: 2em;
     color: rgb(141, 141, 141);
 }
+
+
+#id_reverse_order {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+#id_reverse_order + label {
+    padding: 0 0.5em;
+    display: inline-block;
+    border-radius: 0.2em;
+    border: 0.01em solid rgba(5, 11, 26, 0.3);
+}
+
+#id_reverse_order:checked + label {
+    background-color: rgba(54, 101, 204, 0.2);
+}
+
+.filter-sort form {
+    display: flex;
+    align-items: flex-end;
+    padding: 0 2em;
+    margin-bottom: 2em;
+}
+
+.sort-fields {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+}
+
+.filter-sort select {
+    height: 1.7em;
+}
+
+.filter-sort select:not(:first-child) {
+    margin-right: 1em;
+}

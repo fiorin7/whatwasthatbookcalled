@@ -2,6 +2,7 @@ from django import forms
 from django.forms.widgets import CheckboxInput, Select
 from whatwasthatbookcalled.books.models import Book, BookGenre, Comment
 from languages import languages
+from django.utils.safestring import mark_safe
 
 
 class BookForm(forms.ModelForm):
@@ -60,7 +61,7 @@ class BookForm(forms.ModelForm):
 
 class FilterSortForm(forms.Form):
     GENRES_CHOICES = [(x.id, x.name) for x in BookGenre.objects.all()]
-    SOVED_CHOICES = ((None, "-------"), (True, "Solved"), (False, "Not solved"))
+    SOVED_CHOICES = ((None, "Status"), (True, "Solved"), (False, "Not solved"))
     SORT_CHOICES = (
         ("date", "Posting date"),
         ("popularity", "Popularity"),
@@ -69,26 +70,33 @@ class FilterSortForm(forms.Form):
 
     language = forms.ChoiceField(
         required=False,
-        choices=[("", "------------")] + languages,
+        choices=[("", "Language")] + languages,
         widget=Select(attrs={"onchange": "this.form.submit();"}),
+        label="",
     )
     genre = forms.ChoiceField(
         required=False,
-        choices=[("", "------------")] + GENRES_CHOICES,
+        choices=[("", "Genre")] + GENRES_CHOICES,
         widget=Select(attrs={"onchange": "this.form.submit();"}),
+        label="",
     )
     solved = forms.BooleanField(
         required=False,
         widget=Select(choices=SOVED_CHOICES, attrs={"onchange": "this.form.submit();"}),
+        label="",
     )
 
     sort_by = forms.ChoiceField(
         choices=SORT_CHOICES,
         widget=Select(attrs={"onchange": "this.form.submit();"}),
         required=False,
+        label_suffix="",
     )
     reverse_order = forms.BooleanField(
-        widget=CheckboxInput(attrs={"onchange": "this.form.submit();"}), required=False
+        widget=CheckboxInput(attrs={"onchange": "this.form.submit();"}),
+        required=False,
+        label=mark_safe('<i class="fas fa-sort"></i>'),
+        label_suffix="",
     )
 
 
