@@ -90,6 +90,7 @@ def create(req):
             ]
             book.filled_fields_count = len(filled_fields)
             book.save()
+            form.save_m2m()
 
             return redirect("index")
         else:
