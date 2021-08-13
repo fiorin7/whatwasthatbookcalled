@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Karla:wght@300;400&display=swap");
+@import url("https://use.fontawesome.com/releases/v5.8.2/css/all.css");
+
 /* dont need 600 anymore */
 @import url("reset.css");
 @import url("typography.css");
@@ -6,5 +8,6 @@
 @import url("layout.css");
 
 @import url("index.css");
+@import url("book_details.css");
 @import url("profile.css");
 @import url("register.css");

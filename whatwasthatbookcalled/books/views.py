@@ -5,6 +5,7 @@ from django.db.models import QuerySet
 
 from whatwasthatbookcalled.books.models import Book
 from whatwasthatbookcalled.books.foms import BookForm, CommentForm, FilterSortForm
+from whatwasthatbookcalled.profiles.models import Profile
 from languages import languages
 
 
@@ -104,20 +105,32 @@ def create(req):
 
 
 def details(req, id):
+    profile = Profile.objects.get(user_id=req.user.id)
+    current_user = req.user
+
     book = Book.objects.get(id=id)
-    book_fields = {
+
+    book_short_fields = {
         "Title tips": book.title_tips,
         "Author tips": book.author_tips,
         "Language": book.language,
-        "Year written": book.year_written,
         "Year read": book.year_read,
-        "Cover description": book.cover_description,
+        "Year written": book.year_written,
+    }
+
+    books_long_fields = {
         "Genre": book.genre,
+        "Cover description": book.cover_description,
         "Plot details": book.plot_details,
         "Quotes": book.quotes,
         "Additional notes": book.additional_notes,
     }
+
     comments = book.comment_set.all().order_by("-last_modified")
+    for comment in comments:
+        comment.user_photo = Profile.objects.get(
+            user_id=comment.user.id
+        ).profile_picture
 
     if req.method == "GET":
         comment_form = CommentForm()
@@ -126,9 +139,19 @@ def details(req, id):
             req,
             "books/details.html",
             context={
-                "book_fields": book_fields,
+                "book_short_fields": book_short_fields,
+                "book_long_fields": books_long_fields,
                 "comment_form": comment_form,
                 "comments": comments,
+                "book_user": book.user,
+                "book_id": book.id,
+                "book_user_id": book.user.id,
+                "book_solved": book.solved,
+                "book_user_photo": Profile.objects.get(
+                    user_id=book.user.id
+                ).profile_picture,
+                "current_user_photo": profile.profile_picture,
+                "current_user_id": current_user.id,
             },
         )
 
@@ -145,8 +168,18 @@ def details(req, id):
             req,
             "books/details.html",
             context={
-                "book_fields": book_fields,
+                "book_short_fields": book_short_fields,
+                "book_long_fields": books_long_fields,
                 "comment_form": comment_form,
                 "comments": comments,
+                "book_user": book.user,
+                "book_id": book.id,
+                "book_solved": book.solved,
+                "book_user_id": book.user.id,
+                "book_user_photo": Profile.objects.get(
+                    user_id=book.user.id
+                ).profile_picture,
+                "current_user_photo": profile.profile_picture,
+                "current_user_id": current_user.id,
             },
         )
