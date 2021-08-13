@@ -1,0 +1,48 @@
+{% extends 'base.html' %} {% block body %}
+<div class="site-main register-page">
+    <div class="side-banner">
+        <p>Join now and let our users help you in your book search.</p>
+        <p>And don't forget to help others if you recognize a book.</p>
+    </div>
+    <div class="register-form-container">
+
+        {% if sign_in %}
+        <h1>Sign In</h1>
+        {% else %}
+        <h1>Sign Up</h1>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}{{form}}
+            <button type="submit">
+
+                {% if sign_in %}
+                Sign In
+                {% else %}
+                Sign Up
+                {% endif %}
+
+            </button>
+        </form>
+        <div class="already-member">
+            <p>
+                {% if sign_in %}
+                Not registered yet?
+                {% else %}
+                Already a member?
+                {% endif %}
+            </p>
+            <span>Go to
+
+                {% if sign_in %}
+                <a href={% url 'sign up' %}>Sign Up</a>
+                {% else %}
+                <a href={% url 'sign in' %}>Sign In</a>
+                {% endif %}
+
+            </span>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}
