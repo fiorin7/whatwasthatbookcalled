@@ -1,0 +1,14 @@
+{% extends 'profiles/profile-base.html' %}
+
+
+{% block bio %}
+<a href={% url 'edit bio' %} class="bio">
+    <i class="fas fa-edit"></i>
+    {% if profile.bio %}
+
+    <p>{{profile.bio}}</p>
+    {% else %}
+    <p>No bio added.</p>
+    {% endif %}
+</a>
+{% endblock bio %}

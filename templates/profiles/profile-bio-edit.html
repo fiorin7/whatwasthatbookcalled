@@ -1,0 +1,6 @@
+{% extends 'profiles/profile-base.html' %} {% block bio %}
+
+<div class="bio-edit">
+    <form method="POST">{% csrf_token %}{{form}}</form>
+</div>
+{% endblock bio %}

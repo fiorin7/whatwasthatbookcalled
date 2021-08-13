@@ -1,0 +1,233 @@
+.profile-container {
+    position: relative;
+    width: 60em;
+    margin: 5em auto 0;
+    background-color: white;
+    border-radius: 0.3em;
+    display: flex;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 0 0 0.5em rgba(1, 1, 1, 0.1);
+}
+
+.profile-side-banner {
+    width: 30%;
+    margin-right: 2em;
+    background-color: rgb(214, 213, 248);
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-side-banner .username {
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+    font-weight: bold;
+    background-color: #fcefff;
+    padding: 0.2em 0.5em;
+    border-radius: 0.3em;
+    box-shadow: 0 0 0.5em rgba(130, 77, 228, 0.1);
+}
+
+/* .bio h3 {
+    text-align: left;
+    position: absolute;
+    top: -1.2em;
+    background-color: #fcefff;
+    padding: 0.1em 0.3em;
+    border-radius: 0.3em;
+    box-shadow: 0 0 0.5em rgba(130, 77, 228, 0.1);
+} */
+
+.bio {
+    position: relative;
+    background-color: #6d4aa5c2;
+    box-shadow: 0 0 0.5em rgba(164, 119, 247, 0.1);
+    padding: 0.7em 1em 0.5em;
+    border-radius: 0.3em;
+    margin: 1.5em 0.5em;
+    color: white;
+    overflow: hidden;
+}
+
+.bio:after,
+.profile-picture-container:after {
+    content: "";
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.bio:hover:after,
+.profile-picture-container:hover:after {
+    display: block;
+}
+
+.profile-picture-container:hover:after {
+    border-radius: 50%;
+}
+
+.profile-picture-container:hover .fa-edit {
+    font-size: 1.2em;
+}
+
+.profile-picture {
+    width: 10em;
+    height: auto;
+    border-radius: 50%;
+}
+
+.profile-main {
+    padding: 3em 1em;
+    width: 65%;
+}
+
+/* .edit-profile {
+    background-color: #6d4aa5c2;
+    box-shadow: 0 0 0.5em rgba(164, 119, 247, 0.1);
+    color: white;
+    position: absolute;
+    padding: 0.2em 0.7em;
+    right: 1em;
+    top: 1em;
+    border-radius: 0.3em;
+} */
+
+.bio .fa-edit {
+    position: absolute;
+    top: 0.1em;
+    right: 0.1em;
+    z-index: 2;
+    font-size: 0.7em;
+}
+
+.bio:hover .fa-edit {
+    font-size: 1em;
+}
+
+.bio-edit form textarea {
+    padding: 0.2em 0.3em;
+}
+
+.profile-picture-container {
+    position: relative;
+}
+
+.profile-picture-container form {
+    position: absolute;
+    top: 1em;
+    right: -0.8em;
+    z-index: 2;
+    background-color: white;
+    box-shadow: 0 0 0.5em rgba(1, 1, 1, 0.3);
+    padding: 0.5em;
+    border-radius: 50%;
+}
+
+.profile-picture-container form label {
+    cursor: pointer;
+}
+
+.profile-picture-container form {
+    position: absolute;
+}
+
+.profile-picture-container form input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.posted-books > ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.posted-books .book {
+    box-shadow: 0 0 0.5em rgba(1, 1, 1, 0.2);
+    width: 30%;
+    padding: 0.7em;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    justify-content: space-between;
+    background-color: #fafafa;
+    border-radius: 0.3em;
+}
+
+.posted-books .book.plot {
+    background-color: rgba(244, 103, 150, 0.1);
+}
+
+.posted-books .book.cover-description {
+    background-color: rgba(117, 158, 205, 0.1);
+}
+
+.posted-books .book h3 {
+    margin-bottom: 0.1em;
+}
+
+.books-posted-nav,
+.comment-nav {
+    display: flex;
+    margin-right: 2em;
+    margin-bottom: 1em;
+}
+
+.comment-count {
+    margin-left: 1em;
+}
+
+.books-count,
+.solutions-count {
+    margin-right: auto;
+    margin-left: 1em;
+}
+
+.user-comments {
+    margin-top: 1em;
+}
+
+.comment-list a {
+    display: block;
+    background-color: gray;
+    padding: 0.7em 1em;
+    background-color: #fafafa;
+    border-radius: 0.2em;
+    /* box-shadow: 0 0 0.5em rgba(1, 1, 1, 0.1); */
+    border: 0.01em solid rgba(184, 184, 184, 0.4);
+    width: 30em;
+    margin-top: 1em;
+}
+
+.solutions-count {
+    background-color: rgb(117, 158, 205);
+    padding: 0.3em 0.5em;
+    border-radius: 0.2em;
+    color: white;
+}
+
+.profile-container .solution-badge {
+    margin-left: auto;
+    display: block;
+    width: 7em;
+    background-color: rgb(56, 141, 127);
+    padding: 0.2em 0.5em;
+    border-radius: 0.3em;
+    color: white;
+    text-align: center;
+    margin-bottom: 0.5em;
+    font-size: 0.8em;
+}
+
+.profile-container .solution-badge i {
+    margin-right: 0.2em;
+}
