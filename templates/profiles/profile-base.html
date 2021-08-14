@@ -44,6 +44,10 @@ Profile
                 <ul>
                     {% for book in books %}
                     <a class="book {{book.main_field|slugify}}" href={% url 'details' book.id %}>
+                        {% if book.solved %}
+                        <i class="fas fa-check-circle solved-icon"></i>
+
+                        {% endif %}
                         <h3>{{book.main_field|capfirst}}</h3>
                         {% if book.plot_details %}
                         {{book.plot_details | truncatewords:15}}

@@ -37,10 +37,15 @@
             </defs>
         </svg>
         <ul class="profile-nav">
+            {% if user.is_authenticated %}
             <li><a href="/profile">Profile</a></li>
             <li><a href={% url 'sign out' %}>Logout</a></li>
+
+            {% else %}
             <li><a href={% url 'sign in' %}>Sign in</a></li>
             <li><a href={% url 'sign up' %}>Sign up</a></li>
+            {% endif %}
+
         </ul>
     </nav>
     {% block body %} {% endblock body %}
