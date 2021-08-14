@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load custom_timesince %}
+
+
+{% block page_title %}
+Edit Book
+{% endblock page_title %}
+
+
+{% block body %}
+
+<div class="site-main book-details edit-book">
+    <div class="author-side-banner">
+        <div class="author">
+            <img src={{book_user_photo.url}} alt="profile-picture" />
+            <span>{{book_user}}</span>
+        </div>
+        <a href={% url 'edit book' book_id %}>Edit Book Data</a>
+    </div>
+    <div class="fields">
+        <form action="{% url 'create' %}" method="POST" class="create-form" novalidate>
+            {% csrf_token %}
+            {{form.non_field_errors}}
+            <ul>
+                {{ form.title_tips.errors }}
+                <li>
+                    <div>
+                        {{ form.title_tips.label_tag }}
+                        <p>{{form.title_tips.help_text}}</p>
+                    </div>
+                    {{ form.title_tips }}
+                </li>
+                {{ form.author_tips.errors }}
+                <li>
+                    <div>
+                        {{ form.author_tips.label_tag }}
+                        <p>{{ form.author_tips.help_text }}</p>
+                    </div>
+                    {{ form.author_tips }}
+                </li>
+                {{ form.language.errors }}
+                <li>
+                    <div>
+                        {{ form.language.label_tag }}
+                        <p>{{ form.language.help_text }}</p>
+                    </div>
+                    {{ form.language }}
+                </li>
+            </ul>
+            <ul>
+                {{ form.year_written.errors }}
+                <li>
+                    <div>
+                        {{ form.year_written.label_tag }}
+                        <p>{{ form.year_written.help_text }}</p>
+                    </div>
+                    {{ form.year_written }}
+                </li>
+
+                {{ form.year_read.errors }}
+                <li>
+                    <div>
+                        {{ form.year_read.label_tag }}
+                        <p>{{ form.year_read.help_text }}</p>
+                    </div>
+                    {{ form.year_read }}
+                </li>
+
+                {{ form.part_of_series.errors }}
+                <li>
+                    <div>
+                        {{ form.part_of_series.label_tag }}
+                        <p>{{ form.part_of_series.help_text }}</p>
+                    </div>
+                    {{ form.part_of_series }}
+                </li>
+                {{ form.cover_description.errors }}
+                <li>
+                    <div>
+                        {{ form.cover_description.label_tag }}
+                        <p>{{ form.cover_description.help_text }}</p>
+                    </div>
+                    {{ form.cover_description }}
+                </li>
+            </ul>
+            {{ form.genre.errors }}
+            <ul>
+                <li class="genre-field">
+                    <div>
+                        {{ form.genre.label_tag }}
+                        <p>{{ form.genre.help_text }}</p>
+                    </div>
+                    <ul id="id_genre" class="genre-choices">
+                        {% for choice_id, choice_label in form.genre.field.choices %}
+                        <li>
+                            <input type="checkbox" name="genre" value={{choice_id}} id="{{choice_id}}">
+                            <label for="{{choice_id}}">{{choice_label}}</label>
+
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                {{ form.plot_details.errors }}
+                <li>
+                    <div>
+                        {{ form.plot_details.label_tag }}
+                        <p>{{ form.plot_details.help_text }}</p>
+                    </div>
+                    {{ form.plot_details }}
+                </li>
+                {{ form.quotes.errors }}
+                <li>
+                    <div>
+                        {{ form.quotes.label_tag }}
+                        <p>{{ form.quotes.help_text }}</p>
+                    </div>
+                    {{ form.quotes }}
+                </li>
+                {{ form.additional_notes.errors }}
+                <li>
+                    <div>
+                        {{ form.additional_notes.label_tag }}
+                        <p>{{ form.additional_notes.help_text }}</p>
+                    </div>
+                    {{ form.additional_notes }}
+                </li>
+                <div class="form-group-buttons">
+                    <button type="submit">Done</button>
+                </div>
+            </ul>
+
+
+        </form>
+    </div>
+
+
+    {% endblock body %}

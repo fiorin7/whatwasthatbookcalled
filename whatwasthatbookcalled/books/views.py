@@ -174,3 +174,47 @@ def mark_comment_as_solution(req, book_id, comment_id):
         return redirect("details", book_id)
     else:
         return redirect("details", book.id)
+
+def edit_book(req, book_id):
+    book = Book.objects.get(id=book_id)
+    book_genres = list(book.genre.all().values())
+    book_genres_ids = [x["id"] for x in book_genres]
+
+    if book.user != req.user:
+        return redirect("details", book_id)
+
+    if req.method == "GET":
+        form = BookForm(instance=book)
+
+        return render(
+            req,
+            "books/edit-book.html",
+            {
+                "form": form,
+                "book_id": book.id,
+                "book_user": book.user,
+                "book_user_photo": Profile.objects.get(
+                    user_id=book.user.id
+                ).profile_picture,
+                "book_genres_ids": book_genres_ids,
+            },
+        )
+
+    form = BookForm(req.POST, instance=book)
+    if form.is_valid():
+        form.save()
+        return redirect("details", book_id)
+    else:
+        return render(
+            req,
+            "books/edit-book.html",
+            {
+                "form": form,
+                "book_id": book.id,
+                "book_user": book.user,
+                "book_user_photo": Profile.objects.get(
+                    user_id=book.user.id
+                ).profile_picture,
+                "book_genres_ids": book_genres_ids,
+            },
+        )
