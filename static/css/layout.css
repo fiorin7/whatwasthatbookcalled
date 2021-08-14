@@ -27,186 +27,7 @@ body {
 
 .form-nav {
     background: rgb(58, 81, 180);
-    /* background: linear-gradient(
-        106deg,
-        rgba(58, 81, 180, 1) 0%,
-        rgba(88, 213, 255, 1) 59%,
-        rgba(255, 50, 99, 1) 100%
-    ); */
-    /* padding: 1em 5em; */
-    /* background-color: rgba(255, 50, 99, 1); */
-    /* background: rgb(58, 81, 180);
-    background: linear-gradient(
-        106deg,
-        rgba(58, 81, 180, 1) 0%,
-        rgba(42, 88, 171, 1) 7%,
-        rgba(255, 50, 99, 1) 52%
-    ); */
-    /* background: rgb(255, 95, 109);
-    background: linear-gradient(
-        106deg,
-        rgba(255, 95, 109, 1) 0%,
-        rgba(255, 195, 113, 1) 100%
-    ); */
-    /* background: rgb(198, 255, 221);
-    background: linear-gradient(
-        106deg,
-        rgba(198, 255, 221, 1) 0%,
-        rgba(251, 215, 134, 1) 28%,
-        rgba(247, 121, 125, 1) 100%
-    ); */
-    /* background: rgb(247, 121, 125);
-    background: linear-gradient(
-        106deg,
-        rgba(247, 121, 125, 1) 0%,
-        rgba(249, 190, 110, 1) 73%,
-        rgba(255, 140, 128, 1) 95%
-    ); */
-    /* background: rgb(247, 121, 125);
-    background: linear-gradient(
-        106deg,
-        rgba(247, 121, 125, 1) 0%,
-        rgba(255, 182, 115, 1) 73%,
-        rgba(255, 140, 128, 1) 95%
-    ); */
-    background: rgb(247, 121, 125);
-    background: linear-gradient(
-        106deg,
-        rgba(247, 121, 125, 1) 0%,
-        rgba(255, 175, 110, 1) 73%,
-        rgba(255, 140, 128, 1) 95%
-    );
-    background: rgb(247, 121, 125);
-    background: linear-gradient(
-        108deg,
-        rgba(247, 121, 125, 1) 0%,
-        rgba(255, 158, 110, 1) 73%,
-        rgba(255, 140, 128, 1) 95%
-    );
-    background: rgb(247, 121, 125);
-    background: linear-gradient(
-        108deg,
-        rgba(247, 121, 125, 1) 31%,
-        rgba(255, 199, 121, 0.9) 60%,
-        rgba(255, 140, 128, 1) 81%
-    );
-    background: rgb(247, 121, 125);
-    background: rgb(247, 121, 125);
-    background: linear-gradient(
-        108deg,
-        rgba(247, 121, 125, 1) 5%,
-        rgba(255, 147, 121, 1) 60%,
-        rgba(255, 140, 128, 1) 81%
-    );
-    background: rgb(255, 92, 97);
-    background: linear-gradient(
-        108deg,
-        rgba(255, 92, 97, 1) 26%,
-        rgba(255, 129, 98, 1) 60%,
-        rgba(255, 109, 94, 1) 81%
-    );
-    background: rgb(252, 86, 86);
-    background: linear-gradient(
-        108deg,
-        rgba(252, 86, 86, 1) 26%,
-        rgba(255, 129, 98, 1) 60%,
-        rgba(255, 94, 122, 1) 81%
-    );
-    background: rgb(241, 66, 161);
-    background: rgb(241, 66, 161);
-    background: linear-gradient(
-        127deg,
-        rgba(241, 66, 161, 1) 24%,
-        rgba(141, 84, 255, 1) 80%,
-        rgba(126, 250, 238, 1) 100%
-    );
-    background: rgb(241, 66, 161);
-    background: linear-gradient(
-        127deg,
-        rgba(241, 66, 161, 1) 12%,
-        rgba(140, 83, 254, 1) 68%,
-        rgba(87, 147, 255, 1) 100%
-    );
-    background: rgb(241, 66, 161);
-    background: linear-gradient(
-        45deg,
-        rgba(241, 66, 161, 1) 12%,
-        rgba(140, 83, 254, 1) 68%,
-        rgba(89, 40, 255, 1) 100%
-    );
-    background: rgb(241, 66, 161);
-    background: linear-gradient(
-        45deg,
-        rgba(241, 66, 161, 1) 12%,
-        rgba(140, 83, 254, 1) 68%,
-        rgba(125, 40, 255, 1) 100%
-    );
-    background: rgb(66, 209, 152);
-    background: linear-gradient(
-        45deg,
-        rgba(66, 209, 152, 1) 12%,
-        rgba(71, 170, 176, 1) 38%,
-        rgba(80, 111, 199, 1) 64%
-    );
-    background: rgb(40, 165, 181);
-    background: linear-gradient(
-        45deg,
-        rgba(40, 165, 181, 1) 1%,
-        rgba(80, 111, 199, 1) 69%,
-        rgba(99, 62, 135, 1) 100%
-    );
-    background: rgb(40, 165, 181);
-    background: linear-gradient(
-        45deg,
-        rgba(40, 165, 181, 1) 1%,
-        rgba(42, 116, 173, 1) 40%,
-        rgba(80, 111, 199, 1) 78%,
-        rgba(99, 62, 135, 1) 100%
-    );
-    background: rgb(40, 165, 181);
-    background: linear-gradient(
-        45deg,
-        rgba(40, 165, 181, 1) 1%,
-        rgba(92, 42, 173, 1) 60%,
-        rgba(99, 62, 135, 1) 100%
-    );
-    background: rgb(243, 11, 108);
-    background: linear-gradient(
-        45deg,
-        rgba(243, 11, 108, 1) 1%,
-        rgba(167, 32, 155, 1) 87%,
-        rgba(255, 73, 120, 0.7) 100%
-    );
-    background: rgb(243, 11, 108);
-    background: linear-gradient(
-        45deg,
-        rgba(243, 11, 108, 1) 1%,
-        rgba(167, 32, 155, 1) 87%,
-        rgba(171, 21, 173, 1) 100%
-    );
-    background: rgb(247, 121, 125);
-    background: linear-gradient(
-        108deg,
-        rgba(247, 121, 125, 1) 5%,
-        rgba(255, 147, 121, 1) 60%,
-        rgba(255, 140, 128, 1) 81%
-    );
-    background: rgb(247, 121, 125);
-    background: linear-gradient(
-        108deg,
-        rgba(247, 121, 125, 1) 5%,
-        rgba(255, 147, 121, 1) 60%,
-        rgba(255, 140, 128, 1) 81%,
-        rgba(255, 104, 88, 1) 98%
-    );
-    background: rgb(107, 198, 183);
-    background: radial-gradient(
-        circle,
-        rgba(107, 198, 183, 1) 31%,
-        rgba(12, 166, 151, 1) 100%
-    );
-    background: linear-gradient(90deg, #3f2b96 0%, #a8c0ff 100%);
-    background: rgb(66, 47, 153);
+
     background: linear-gradient(
         45deg,
         rgba(66, 47, 153, 1) 35%,
@@ -280,43 +101,55 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 3em;
+    padding: 1em 2em 2em;
     border-radius: 0.5em;
     width: 40em;
     background-color: white;
     margin: auto;
 }
 
-.create-form > ul > li {
+.create-form > ul:not(.errorlist) > li {
     display: flex;
     align-items: flex-start;
 }
 
-.create-form > ul > li label {
-    width: 20%;
+.create-form > ul > li > div > label {
+    font-weight: bold;
 }
 
 .create-form > ul > li input,
+.create-form > ul > li select,
 .create-form > ul > li textarea {
-    margin-left: 3em;
+    margin-left: 2em;
     background-color: #f1f1f1;
     border: 0.01em solid rgba(218, 208, 208, 0.5);
     border-radius: 0.3em;
     padding: 0.2em 0.5em;
+    margin-top: 0.2em;
 }
+
+/* .create-form > ul > li textarea {
+    margin-left: 3em;
+} */
 
 .create-form input:focus,
 .create-form textarea:focus {
     outline-color: rgba(160, 160, 160, 0.5);
 }
 
-.create-form > ul > li {
+.create-form > ul:not(.errorlist) > li {
     margin: 1em 0;
 }
 
 .create-form .group-two,
 .create-form .group-three {
     display: none;
+}
+
+.create-form .group-one,
+.create-form .group-two,
+.create-form .group-three {
+    margin-top: 2em;
 }
 
 .create-form .form-group-buttons {
@@ -366,6 +199,7 @@ body {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    margin-left: 6em;
 }
 
 .genre-choices li:first-child {
@@ -373,7 +207,7 @@ body {
 }
 
 .create-form .genre-field {
-    flex-direction: column;
+    /* flex-direction: column; */
 }
 
 .genre-choices li {
@@ -387,4 +221,20 @@ body {
     padding: 0.5em;
     background-color: #f1f1f1;
     border-radius: 0.3em;
+}
+
+.errorlist > li {
+    background-color: rgb(255, 50, 99);
+    color: white;
+    padding: 0.5em 0.7em;
+    border-radius: 0.3em;
+}
+
+.create-form > ul > li > div {
+    width: 12em;
+}
+
+.create-form > ul > li > div > p {
+    font-size: 0.85em;
+    color: rgb(85, 85, 85);
 }

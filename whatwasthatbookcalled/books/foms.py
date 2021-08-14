@@ -6,6 +6,10 @@ from django.utils.safestring import mark_safe
 
 
 class BookForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.label_suffix = ""
+
     class Meta:
         model = Book
         exclude = ["solved", "filled_fields_count", "user"]
@@ -14,35 +18,57 @@ class BookForm(forms.ModelForm):
             "title_tips": forms.Textarea(
                 attrs={
                     "rows": 3,
-                }
+                    "placeholder": "e.g. Something about ships.",
+                },
             ),
             "author_tips": forms.Textarea(
                 attrs={
                     "rows": 3,
-                }
+                    "placeholder": "e.g. Last name started with 'S'.",
+                },
             ),
             "cover_description": forms.Textarea(
                 attrs={
                     "rows": 3,
+                    "placeholder": "e.g. Photo of a castle.",
                 }
             ),
             "plot_details": forms.Textarea(
                 attrs={
-                    "rows": 3,
+                    "rows": 6,
+                    "placeholder": "e.g. A group of people was trying to destroy a ring.",
                 }
             ),
             "additional_notes": forms.Textarea(
                 attrs={
                     "rows": 3,
+                    "placeholder": "e.g. I got the book from a thrift shop in Spain.",
                 }
             ),
             "quotes": forms.Textarea(
                 attrs={
-                    "rows": 3,
+                    "rows": 2,
+                    "placeholder": "e.g. 'There is some good in this world, and it's worth fighting for.'",
                 }
             ),
             "genre": forms.CheckboxSelectMultiple(),
             "part_of_series": forms.NullBooleanSelect(),
+            "year_read": forms.NumberInput(attrs={"placeholder": "1997"}),
+            "year_written": forms.NumberInput(attrs={"placeholder": "1874"}),
+        }
+
+        help_texts = {
+            "title_tips": "Anything you can remember about the title.",
+            "author_tips": "Anything you can remember about the author.",
+            "language": "In which language did you read the book?",
+            "year_written": "When approximately do you think the book was written?",
+            "year_read": "When approximately did you read or see the book?",
+            "part_of_series": "Was the book a part of series?",
+            "cover_description": "What was on the cover?",
+            "genre": "What genre was the book?",
+            "plot_details": "Anything you can remember about the plot.",
+            "quotes": "Any quotes that you can remember.",
+            "additional_notes": "",
         }
 
     def clean(self):
