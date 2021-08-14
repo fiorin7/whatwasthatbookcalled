@@ -1,4 +1,5 @@
 from datetime import datetime, timezone
+from django.contrib.auth.decorators import login_required
 
 from django.shortcuts import redirect, render
 from django.db.models import QuerySet
@@ -50,6 +51,7 @@ def index(req):
     return render(req, "books/index.html", context=context)
 
 
+@login_required
 def create(req):
     if req.method == "GET":
         form = BookForm()
@@ -80,8 +82,9 @@ def create(req):
 
 
 def details(req, id):
-    profile = Profile.objects.get(user_id=req.user.id)
-    current_user = req.user
+    profile = None
+    if req.user.is_authenticated:
+        profile = Profile.objects.get(user_id=req.user.id)
 
     book = Book.objects.get(id=id)
 
@@ -130,6 +133,8 @@ def details(req, id):
             },
         )
 
+    if not req.user.is_authenticated:
+        return redirect("sign in")
     comment_form = CommentForm(req.POST)
     if comment_form.is_valid():
         comment = comment_form.save(commit=False)
@@ -160,6 +165,7 @@ def details(req, id):
         )
 
 
+@login_required
 def mark_comment_as_solution(req, book_id, comment_id):
     book = Book.objects.get(id=book_id)
     comment = Comment.objects.get(id=comment_id)
@@ -175,6 +181,8 @@ def mark_comment_as_solution(req, book_id, comment_id):
     else:
         return redirect("details", book.id)
 
+
+@login_required
 def edit_book(req, book_id):
     book = Book.objects.get(id=book_id)
     book_genres = list(book.genre.all().values())

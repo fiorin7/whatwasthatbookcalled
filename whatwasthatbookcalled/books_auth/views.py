@@ -1,4 +1,5 @@
 from django.contrib.auth import login, logout
+from django.contrib.auth.decorators import login_required
 from whatwasthatbookcalled.books_auth.forms import RegisterForm, LoginForm
 from django.shortcuts import redirect, render
 
@@ -30,6 +31,7 @@ def sign_in(req):
         return render(req, "auth/register-login.html", {"form": form, "sign_in": True})
 
 
+@login_required
 def sign_out(req):
     logout(req)
     return redirect("/books")

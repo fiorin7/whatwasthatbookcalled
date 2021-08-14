@@ -4,8 +4,10 @@ from whatwasthatbookcalled.profiles.forms import (
 )
 from whatwasthatbookcalled.profiles.models import Profile
 from django.shortcuts import redirect, render
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def profile_base(
     req, profile_form, template_name, show_books=False, show_comments=False
 ):
