@@ -23,48 +23,69 @@ Describe a Book
                 <li>Plot</li>
             </ul>
         </nav>
-        <form action="{% url 'create' %}" method="POST" class="create-form">
+        <form action="{% url 'create' %}" method="POST" class="create-form" novalidate>
             {% csrf_token %}
             {{form.non_field_errors}}
             <ul class="group-one">
+                {{ form.title_tips.errors }}
                 <li>
-                    {{ form.title_tips.errors }}
-                    {{ form.title_tips.label_tag }}
+                    <div>
+                        {{ form.title_tips.label_tag }}
+                        <p>{{form.title_tips.help_text}}</p>
+                    </div>
                     {{ form.title_tips }}
                 </li>
+                {{ form.author_tips.errors }}
                 <li>
-                    {{ form.author_tips.errors }}
-                    {{ form.author_tips.label_tag }}
+                    <div>
+                        {{ form.author_tips.label_tag }}
+                        <p>{{ form.author_tips.help_text }}</p>
+                    </div>
                     {{ form.author_tips }}
                 </li>
+                {{ form.language.errors }}
                 <li>
-                    {{ form.language.errors }}
-                    {{ form.language.label_tag }}
+                    <div>
+                        {{ form.language.label_tag }}
+                        <p>{{ form.language.help_text }}</p>
+                    </div>
                     {{ form.language }}
                 </li>
                 <div class="form-group-buttons"><button type="button" class="continue-btn">Continue</button></div>
             </ul>
             <ul class="group-two">
+                {{ form.year_written.errors }}
                 <li>
-                    {{ form.year_written.errors }}
-                    {{ form.year_written.label_tag }}
+                    <div>
+                        {{ form.year_written.label_tag }}
+                        <p>{{ form.year_written.help_text }}</p>
+                    </div>
                     {{ form.year_written }}
                 </li>
 
+                {{ form.year_read.errors }}
                 <li>
-                    {{ form.year_read.errors }}
-                    {{ form.year_read.label_tag }}
+                    <div>
+                        {{ form.year_read.label_tag }}
+                        <p>{{ form.year_read.help_text }}</p>
+                    </div>
                     {{ form.year_read }}
                 </li>
 
+                {{ form.part_of_series.errors }}
                 <li>
-                    {{ form.part_of_series.errors }}
-                    {{ form.part_of_series.label_tag }}
+                    <div>
+                        {{ form.part_of_series.label_tag }}
+                        <p>{{ form.part_of_series.help_text }}</p>
+                    </div>
                     {{ form.part_of_series }}
                 </li>
+                {{ form.cover_description.errors }}
                 <li>
-                    {{ form.cover_description.errors }}
-                    {{ form.cover_description.label_tag }}
+                    <div>
+                        {{ form.cover_description.label_tag }}
+                        <p>{{ form.cover_description.help_text }}</p>
+                    </div>
                     {{ form.cover_description }}
                 </li>
                 <div class="form-group-buttons">
@@ -72,10 +93,13 @@ Describe a Book
                     <button type="button" class="continue-btn">Continue</button>
                 </div>
             </ul>
+            {{ form.genre.errors }}
             <ul class="group-three">
                 <li class="genre-field">
-                    {{ form.genre.errors }}
-                    {{ form.genre.label_tag }}
+                    <div>
+                        {{ form.genre.label_tag }}
+                        <p>{{ form.genre.help_text }}</p>
+                    </div>
                     <ul id="id_genre" class="genre-choices">
                         {% for choice_id, choice_label in form.genre.field.choices %}
                         <li>
@@ -86,19 +110,28 @@ Describe a Book
                         {% endfor %}
                     </ul>
                 </li>
+                {{ form.plot_details.errors }}
                 <li>
-                    {{ form.plot_details.errors }}
-                    {{ form.plot_details.label_tag }}
+                    <div>
+                        {{ form.plot_details.label_tag }}
+                        <p>{{ form.plot_details.help_text }}</p>
+                    </div>
                     {{ form.plot_details }}
                 </li>
+                {{ form.quotes.errors }}
                 <li>
-                    {{ form.quotes.errors }}
-                    {{ form.quotes.label_tag }}
+                    <div>
+                        {{ form.quotes.label_tag }}
+                        <p>{{ form.quotes.help_text }}</p>
+                    </div>
                     {{ form.quotes }}
                 </li>
+                {{ form.additional_notes.errors }}
                 <li>
-                    {{ form.additional_notes.errors }}
-                    {{ form.additional_notes.label_tag }}
+                    <div>
+                        {{ form.additional_notes.label_tag }}
+                        <p>{{ form.additional_notes.help_text }}</p>
+                    </div>
                     {{ form.additional_notes }}
                 </li>
                 <div class="form-group-buttons">
@@ -110,5 +143,6 @@ Describe a Book
 
         </form>
     </div>
+    <input type="hidden" name="error_page" id="error_page" value={{first_error_page}}>
 </div>
 {% endblock body %}

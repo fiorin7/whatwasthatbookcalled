@@ -9,6 +9,21 @@ from whatwasthatbookcalled.books.foms import BookForm, CommentForm, FilterSortFo
 from whatwasthatbookcalled.profiles.models import Profile
 from languages import languages
 
+fields_per_page = {
+    "__all__": 1,
+    "title_tips": 1,
+    "author_tips": 1,
+    "language": 1,
+    "year_written": 2,
+    "year_read": 2,
+    "part_of_serie": 2,
+    "cover_description": 2,
+    "genre": 3,
+    "plot_details": 3,
+    "quotes": 3,
+    "additional_notes": 3,
+}
+
 
 def index(req):
     filter_sort_form = FilterSortForm(req.GET)
@@ -55,7 +70,9 @@ def index(req):
 def create(req):
     if req.method == "GET":
         form = BookForm()
-        return render(req, "books/create.html", context={"form": form})
+        return render(
+            req, "books/create.html", context={"form": form, "first_error_page": None}
+        )
     elif req.method == "POST":
         form = BookForm(req.POST)
         if form.is_valid():
@@ -76,9 +93,14 @@ def create(req):
 
             return redirect("index")
         else:
-            print(req.POST)
+            for field in form.errors.keys():
+                first_error_page = fields_per_page[field]
             print("INVALID")
-            return render(req, "books/create.html", context={"form": form})
+            return render(
+                req,
+                "books/create.html",
+                context={"form": form, "first_error_page": first_error_page},
+            )
 
 
 def details(req, id):
