@@ -1,4 +1,16 @@
-{% extends 'base.html' %} {% block body %}
+{% extends 'base.html' %}
+
+{% block page_title %}
+
+{% if sign_in %}
+Sign In
+{% else %}
+Sign Up
+{% endif %}
+
+{% endblock page_title %}
+
+{% block body %}
 <div class="site-main register-page">
     <div class="side-banner">
         <p>Join now and let our users help you in your book search.</p>
