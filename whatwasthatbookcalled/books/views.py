@@ -130,30 +130,27 @@ def details(req, id):
     for comment in comments:
         comment.user_photo = Profile.objects.get(
             user_id=comment.user.id
-        ).profile_picture
+        ).profile_picture_url
+
+    context = {
+        "book_short_fields": book_short_fields,
+        "book_long_fields": books_long_fields,
+        "comments": comments,
+        "book_user": book.user,
+        "book_id": book.id,
+        "book_user_id": book.user.id,
+        "book_solved": book.solved,
+        "book_user_photo": Profile.objects.get(
+            user_id=book.user.id
+        ).profile_picture_url,
+        "current_user_photo": profile.profile_picture_url if profile else None,
+    }
 
     if req.method == "GET":
         comment_form = CommentForm()
+        context["comment_form"] = comment_form
 
-        return render(
-            req,
-            "books/details.html",
-            context={
-                "book_short_fields": book_short_fields,
-                "book_long_fields": books_long_fields,
-                "comment_form": comment_form,
-                "comments": comments,
-                "book_user": book.user,
-                "book_id": book.id,
-                "book_user_id": book.user.id,
-                "book_solved": book.solved,
-                "book_user_photo": Profile.objects.get(
-                    user_id=book.user.id
-                ).profile_picture,
-                "current_user_photo": profile.profile_picture,
-                "current_user_id": current_user.id,
-            },
-        )
+        return render(req, "books/details.html", context)
 
     if not req.user.is_authenticated:
         return redirect("sign in")
@@ -166,25 +163,9 @@ def details(req, id):
         return redirect("details", id)
 
     else:
-        return render(
-            req,
-            "books/details.html",
-            context={
-                "book_short_fields": book_short_fields,
-                "book_long_fields": books_long_fields,
-                "comment_form": comment_form,
-                "comments": comments,
-                "book_user": book.user,
-                "book_id": book.id,
-                "book_solved": book.solved,
-                "book_user_id": book.user.id,
-                "book_user_photo": Profile.objects.get(
-                    user_id=book.user.id
-                ).profile_picture,
-                "current_user_photo": profile.profile_picture,
-                "current_user_id": current_user.id,
-            },
-        )
+        context["comment_form"] = comment_form
+
+        return render(req, "books/details.html", context)
 
 
 @login_required
