@@ -13,14 +13,10 @@ Profile
                 <label for="id_profile_picture"><i class="fas fa-edit"></i></label>{{form.profile_picture}}
             </form>
 
-            <img {% if not profile.profile_picture %}
-                src="https://previews.123rf.com/images/wenchiawang/wenchiawang1511/wenchiawang151103313/48301878-animal-raccoon-doodle-speech-bubble.jpg"
-                {% else %} src={{profile.profile_picture.url}} {% endif %} alt="profile-picture"
-                class="profile-picture" />
+            <img src={{profile.profile_picture_url}} alt="profile-picture" class="profile-picture" />
         </div>
         <p class="username">{{username}}</p>
-        <p class="last-active">last online 2 hours ago</p>
-        <span class="badge">:)</span>
+        {% comment %} <p class="last-active">last online 2 hours ago</p> {% endcomment %}
 
         {% block bio %}
 

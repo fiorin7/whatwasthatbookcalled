@@ -10,9 +10,12 @@ Book Details
 {% block body %}
 
 <div class="site-main book-details">
-    <div class="author">
-        <img src={{book_user_photo.url}} alt="profile-picture" />
-        <span>{{book_user}}</span>
+    <div class="author-side-banner">
+        <div class="author">
+            <img src={{book_user_photo}} alt="profile-picture" />
+            <span>{{book_user}}</span>
+        </div>
+        <a href={% url 'edit book' book_id %}>Edit Book Data</a>
     </div>
     <div class="fields">
         <div class="short-fields">
@@ -58,7 +61,7 @@ Book Details
 
     <div class="comments">
         <div class="comment-form-container">
-            <img src={{current_user_photo.url}} alt="profile picture">
+            <img src={{current_user_photo}} alt="profile picture">
             <form method="POST">
                 {{comment_form}}
                 <button type="submit">Post</button>
@@ -67,7 +70,7 @@ Book Details
 
         {% for comment in comments %}
         <div class="comment">
-            <img src={{comment.user_photo.url}} alt=" comment photo">
+            <img src={{comment.user_photo}} alt=" comment photo">
             <div class="comment-body">
                 <div class="comment-header"><span class="username">{{comment.user}}</span>
 

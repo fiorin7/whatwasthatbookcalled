@@ -225,7 +225,7 @@ def edit_book(req, book_id):
                 "book_user": book.user,
                 "book_user_photo": Profile.objects.get(
                     user_id=book.user.id
-                ).profile_picture,
+                ).profile_picture_url,
                 "book_genres_ids": book_genres_ids,
             },
         )
@@ -244,7 +244,7 @@ def edit_book(req, book_id):
                 "book_user": book.user,
                 "book_user_photo": Profile.objects.get(
                     user_id=book.user.id
-                ).profile_picture,
+                ).profile_picture_url,
                 "book_genres_ids": book_genres_ids,
             },
         )
