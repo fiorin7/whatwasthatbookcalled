@@ -15,7 +15,7 @@ Profile
 
             <img src={{profile.profile_picture_url}} alt="profile-picture" class="profile-picture" />
         </div>
-        <p class="username">{{username}}</p>
+        <p class="username">{{user}}</p>
         {% comment %} <p class="last-active">last online 2 hours ago</p> {% endcomment %}
 
         {% block bio %}
@@ -23,13 +23,13 @@ Profile
         {% endblock bio %}
 
 
-        <p class="user-joined">User joined on {{date_joined}}.</p>
+        <p class="user-joined">User joined on {{user.date_joined_string}}.</p>
     </div>
     <div class="profile-main">
         <div class="books-posted">
             <div class="books-posted-nav">
                 <h3>Books posted</h3>
-                <span class="books-count">{{books_count}}</span>
+                <span class="books-count">{{user.books_count}}</span>
 
                 {% if show_books %}
                 <a href={% url "profile" %}>Hide</a>
@@ -66,8 +66,8 @@ Profile
         <div class="user-comments">
             <div class="comment-nav">
                 <h3>My comments</h3>
-                <span class="comment-count">{{comment_count}}</span>
-                <span class="solutions-count">Solutions: {{solutions_count}}</span>
+                <span class="comment-count">{{user.comment_count}}</span>
+                <span class="solutions-count">Solutions: {{user.solutions_count}}</span>
                 {% if show_comments %}
                 <a href={% url "profile" %}>Hide</a>
                 {% else %}

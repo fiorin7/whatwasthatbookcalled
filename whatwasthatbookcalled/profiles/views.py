@@ -13,31 +13,20 @@ def profile_base(
     req, profile_form, template_name, show_books=False, show_comments=False
 ):
     profile_obj = ProfileService.get_by_id(req.user.id)
-    date_joined_string = req.user.date_joined.strftime("%b %d, %Y")
 
-    books = req.user.book_set.all()
-    books_count = books.count()
-    books = books.order_by("-last_modified")
+    books = req.user.books
     if not show_books:
         books = books[:3]
 
-    comments = req.user.comment_set.all()
-    comments = comments.order_by("-last_modified")
-    comment_count = comments.count()
-    solutions_count = comments.filter(is_solution=True).count()
+    comments = req.user.comments
     if not show_comments:
         comments = comments[:5]
 
     context = {
         "profile": profile_obj,
-        "date_joined": date_joined_string,
-        "username": req.user,
         "books": books,
-        "books_count": books_count,
         "show_books": show_books,
         "comments": comments,
-        "comment_count": comment_count,
-        "solutions_count": solutions_count,
         "show_comments": show_comments,
     }
 

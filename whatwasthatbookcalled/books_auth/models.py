@@ -15,3 +15,27 @@ class BookUser(AbstractUser):
     @property
     def profile(self):
         return ProfileService.get_by_id(self.id)
+
+    @property
+    def date_joined_string(self):
+        return self.date_joined.strftime("%b %d, %Y")
+
+    @property
+    def books(self):
+        return self.book_set.all().order_by("-last_modified")
+
+    @property
+    def comments(self):
+        return self.comment_set.all().order_by("-last_modified")
+
+    @property
+    def books_count(self):
+        return self.book_set.all().count()
+
+    @property
+    def comments_count(self):
+        return self.comment_set.all().count()
+
+    @property
+    def solutions_count(self):
+        return self.comment_set.filter(is_solution=True).count()
