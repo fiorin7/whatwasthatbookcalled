@@ -52,6 +52,36 @@ class Book(models.Model):
     def comment_count(self):
         return self.comment_set.all().count()
 
+    @property
+    def comments_by_last_modified(self):
+        return self.comment_set.all().order_by("-last_modified")
+
+    @property
+    def short_fields(self):
+        return {
+            "Title tips": self.title_tips,
+            "Author tips": self.author_tips,
+            "Language": self.language,
+            "Year read": self.year_read,
+            "Year written": self.year_written,
+        }
+
+    @property
+    def long_fields(self):
+        return {
+            "Genre": self.genre,
+            "Cover description": self.cover_description,
+            "Plot details": self.plot_details,
+            "Quotes": self.quotes,
+            "Additional notes": self.additional_notes,
+        }
+
+    @property
+    def book_genres_as_list(self):
+        book_genres = list(self.genre.all().values())
+        book_genres_ids = [x["id"] for x in book_genres]
+        return book_genres_ids
+
 
 class Comment(models.Model):
     text = models.TextField()

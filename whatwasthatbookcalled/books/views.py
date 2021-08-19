@@ -1,29 +1,12 @@
+from whatwasthatbookcalled.books.utils import get_first_error_page
 import whatwasthatbookcalled.books.services as BookService
-import whatwasthatbookcalled.profiles.services as ProfileService
 from django.contrib.auth.decorators import login_required
 
 from django.shortcuts import redirect, render
-from django.db.models import QuerySet
 
 from whatwasthatbookcalled.books.models import Comment
 from whatwasthatbookcalled.books.foms import BookForm, CommentForm, FilterSortForm
-from whatwasthatbookcalled.profiles.models import Profile
 from languages import languages
-
-fields_per_page = {
-    "__all__": 1,
-    "title_tips": 1,
-    "author_tips": 1,
-    "language": 1,
-    "year_written": 2,
-    "year_read": 2,
-    "part_of_serie": 2,
-    "cover_description": 2,
-    "genre": 3,
-    "plot_details": 3,
-    "quotes": 3,
-    "additional_notes": 3,
-}
 
 
 def index(req):
@@ -45,75 +28,32 @@ def create(req):
         return render(
             req, "books/create.html", context={"form": form, "first_error_page": None}
         )
-    elif req.method == "POST":
-        form = BookForm(req.POST)
-        if form.is_valid():
-            book = form.save(commit=False)
 
-            book.user = req.user
+    form = BookForm(req.POST)
+    if form.is_valid():
+        book = BookService.get_book_with_user_and_filled_fields(form, req.user)
+        book.save()
+        form.save_m2m()
+        return redirect("index")
 
-            filled_fields = [
-                x
-                for x in form.cleaned_data.values()
-                if x != ""
-                and x is not None
-                and not (isinstance(x, QuerySet) and len(x) == 0)
-            ]
-            book.filled_fields_count = len(filled_fields)
-            book.save()
-            form.save_m2m()
+    else:
+        first_error_page = get_first_error_page(form.errors)
 
-            return redirect("index")
-        else:
-            for field in form.errors.keys():
-                first_error_page = fields_per_page[field]
-            print("INVALID")
-            return render(
-                req,
-                "books/create.html",
-                context={"form": form, "first_error_page": first_error_page},
-            )
+        return render(
+            req,
+            "books/create.html",
+            context={"form": form, "first_error_page": first_error_page},
+        )
 
 
 def details(req, id):
-    profile = None
-    if req.user.is_authenticated:
-        profile = ProfileService.get_by_id(req.user.id)
-
     book = BookService.get_by_id(id)
 
-    book_short_fields = {
-        "Title tips": book.title_tips,
-        "Author tips": book.author_tips,
-        "Language": book.language,
-        "Year read": book.year_read,
-        "Year written": book.year_written,
-    }
-
-    books_long_fields = {
-        "Genre": book.genre,
-        "Cover description": book.cover_description,
-        "Plot details": book.plot_details,
-        "Quotes": book.quotes,
-        "Additional notes": book.additional_notes,
-    }
-
-    comments = book.comment_set.all().order_by("-last_modified")
-    for comment in comments:
-        comment.user_photo = ProfileService.get_by_id(
-            comment.user.id
-        ).profile_picture_url
-
     context = {
-        "book_short_fields": book_short_fields,
-        "book_long_fields": books_long_fields,
-        "comments": comments,
-        "book_user": book.user,
-        "book_id": book.id,
-        "book_user_id": book.user.id,
-        "book_solved": book.solved,
-        "book_user_photo": ProfileService.get_by_id(book.user.id).profile_picture_url,
-        "current_user_photo": profile.profile_picture_url if profile else None,
+        "book": book,
+        "current_user_photo": req.user.profile.profile_picture_url
+        if req.user.is_authenticated
+        else None,
     }
 
     if req.method == "GET":
@@ -124,11 +64,12 @@ def details(req, id):
 
     if not req.user.is_authenticated:
         return redirect("sign in")
+
     comment_form = CommentForm(req.POST)
     if comment_form.is_valid():
-        comment = comment_form.save(commit=False)
-        comment.user = req.user
-        comment.book = book
+        comment = BookService.get_comment_with_user_and_book(
+            comment_form, req.user, book
+        )
         comment.save()
         return redirect("details", id)
 
@@ -158,44 +99,27 @@ def mark_comment_as_solution(req, book_id, comment_id):
 @login_required
 def edit_book(req, book_id):
     book = BookService.get_by_id(id=book_id)
-    book_genres = list(book.genre.all().values())
-    book_genres_ids = [x["id"] for x in book_genres]
+    book_genres_ids = book.book_genres_as_list
 
     if book.user != req.user:
         return redirect("details", book_id)
 
-    if req.method == "GET":
-        form = BookForm(instance=book)
+    context = {
+        "book_id": book.id,
+        "book_user": book.user,
+        "book_user_photo": book.user.profile.profile_picture_url,
+        "book_genres_ids": book_genres_ids,
+    }
 
-        return render(
-            req,
-            "books/edit-book.html",
-            {
-                "form": form,
-                "book_id": book.id,
-                "book_user": book.user,
-                "book_user_photo": ProfileService.get_by_id(
-                    book.user.id
-                ).profile_picture_url,
-                "book_genres_ids": book_genres_ids,
-            },
-        )
+    if req.method == "GET":
+        context["form"] = BookForm(instance=book)
+
+        return render(req, "books/edit-book.html", context)
 
     form = BookForm(req.POST, instance=book)
     if form.is_valid():
         form.save()
         return redirect("details", book_id)
     else:
-        return render(
-            req,
-            "books/edit-book.html",
-            {
-                "form": form,
-                "book_id": book.id,
-                "book_user": book.user,
-                "book_user_photo": ProfileService.get_by_id(
-                    book.user.id
-                ).profile_picture_url,
-                "book_genres_ids": book_genres_ids,
-            },
-        )
+        context["form"] = form
+        return render(req, "books/edit-book.html", context)
