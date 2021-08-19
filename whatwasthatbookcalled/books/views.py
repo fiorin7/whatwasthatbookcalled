@@ -32,9 +32,6 @@ def index(req):
     filtered_books = BookService.filter_all_by_GET_params(req.GET)
     sorted_books = BookService.sort_filtered_by_GET_params(req.GET, filtered_books)
 
-    for book in sorted_books:
-        book.comment_count = book.comment_set.all().count()
-
     context["books"] = sorted_books
     context["filter_sort_form"] = filter_sort_form
 

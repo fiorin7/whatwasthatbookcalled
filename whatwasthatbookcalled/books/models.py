@@ -48,6 +48,10 @@ class Book(models.Model):
         elif self.cover_description:
             return "cover description"
 
+    @property
+    def comment_count(self):
+        return self.comment_set.all().count()
+
 
 class Comment(models.Model):
     text = models.TextField()
