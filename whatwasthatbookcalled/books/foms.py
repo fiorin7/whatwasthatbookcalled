@@ -53,8 +53,8 @@ class BookForm(forms.ModelForm):
             ),
             "genre": forms.CheckboxSelectMultiple(),
             "part_of_series": forms.NullBooleanSelect(),
-            "year_read": forms.NumberInput(attrs={"placeholder": "1997"}),
-            "year_written": forms.NumberInput(attrs={"placeholder": "1874"}),
+            "year_read": forms.NumberInput(attrs={"placeholder": "e.g. 1997"}),
+            "year_written": forms.NumberInput(attrs={"placeholder": "e.g. 1874"}),
         }
 
         help_texts = {
