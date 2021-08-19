@@ -3,6 +3,7 @@ from whatwasthatbookcalled.profiles.forms import (
     ProfileEditProfilePictureForm,
 )
 from whatwasthatbookcalled.profiles.models import Profile
+import whatwasthatbookcalled.profiles.services as ProfileService
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 
@@ -11,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 def profile_base(
     req, profile_form, template_name, show_books=False, show_comments=False
 ):
-    profile_obj = Profile.objects.get(user_id=req.user.id)
+    profile_obj = ProfileService.get_by_id(req.user.id)
     date_joined_string = req.user.date_joined.strftime("%b %d, %Y")
 
     books = req.user.book_set.all()
