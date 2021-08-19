@@ -1,0 +1,71 @@
+.landing-page {
+    padding: 0;
+    margin-top: 5em;
+}
+
+.landing-page .illustations-banner > ul {
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+    background-color: rgba(143, 8, 143, 0.05);
+    /* box-shadow: 0 0 0.5em rgba(1, 1, 1, 0.1); */
+    padding: 1em;
+    /* box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.1); */
+}
+
+.landing-page .illustations-banner > ul > li {
+    /* background-color: white; */
+    display: flex;
+    flex-direction: column;
+    width: 20em;
+    align-items: center;
+    /* padding: 1em; */
+    /* border-radius: 15%; */
+    /* box-shadow: 0 0 0.5em rgba(1, 1, 1, 0.1); */
+    /* background-color: white; */
+}
+
+.landing-page .image-container img {
+    display: block;
+    width: 18em;
+    height: auto;
+    /* border: 0.4em solid rgba(70, 49, 97, 0.3); */
+    border-radius: 50%;
+
+    /* background-color: white; */
+    /* box-shadow: 0 0 0.8em rgba(0, 0, 0, 0.2); */
+}
+
+.landing-page .image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-top: 1em;
+}
+
+.landing-page .image-container:after {
+    position: absolute;
+    display: block;
+    content: "";
+    background-color: rgba(111, 31, 158, 0.15);
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.landing-page .illustations-banner > ul > li > p {
+    /* background-color: rgba(70, 49, 97, 1);
+    color: white; */
+    padding: 0.5em;
+    border-radius: 0.3em;
+    width: 20em;
+    height: 5.5em;
+    text-align: center;
+    font-size: 1.2em;
+    margin-top: 1em;
+}
+
+.landing-page .illustations-banner > ul > li > h3 {
+}

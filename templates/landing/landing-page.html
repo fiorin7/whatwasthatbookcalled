@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<div class="site-main landing-page">
+    <div class="illustations-banner">
+        <ul>
+            <li>
+                <div class="image-container"><img src={% static 'images/fox1-bigger.png' %} alt="" /></div>
+                <p>
+                    Ever tried to find a book you read as a child but couldn't
+                    remember more than a bit of the plot?
+                </p>
+            </li>
+            <li>
+                <div class="image-container"><img src={% static 'images/fox2-bigger.png' %} alt="" /></div>
+                <p>
+                    Ever read a quote from a book but couldn't find which book
+                    it's from?
+                </p>
+            </li>
+            <li>
+                <div class="image-container"><img src={% static 'images/fox3-bigger.png' %} alt="" /></div>
+                <p>
+                    Ever saw a book with a cool cover in a bookstore but forgot
+                    to write down the title?
+                </p>
+            </li>
+        </ul>
+    </div>
+    <div class="landing-create-container">
+        <h1>Tell us about your book by filling in a simple form and our users will do their best to help.</h1>
+        <img src={% static 'images/landing-page-create-form.png' %} alt="">
+        <a href={% url "create" %}>Describe a book</a>
+    </div>
+</div>
+{% endblock body %}
