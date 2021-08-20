@@ -33,7 +33,7 @@ class Book(models.Model):
     quotes = models.TextField(blank=True)
     additional_notes = models.TextField(blank=True)
     solved = models.BooleanField(default=False)
-    last_modified = models.DateTimeField(auto_now=True)
+    last_modified = models.DateTimeField(auto_now_add=True)
     filled_fields_count = models.PositiveIntegerField(
         validators=[MinValueValidator(2), MaxValueValidator(11)]
     )
@@ -87,5 +87,5 @@ class Comment(models.Model):
     text = models.TextField()
     user = models.ForeignKey(to=BookUser, on_delete=CASCADE)
     book = models.ForeignKey(to=Book, on_delete=CASCADE)
-    last_modified = models.DateTimeField(auto_now=True)
+    last_modified = models.DateTimeField(auto_now_add=True)
     is_solution = models.BooleanField(default=False)
