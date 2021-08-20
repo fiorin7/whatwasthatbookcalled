@@ -1,9 +1,8 @@
 from whatwasthatbookcalled.books.utils import get_first_error_page
 import whatwasthatbookcalled.books.services as BookService
 from django.contrib.auth.decorators import login_required
-
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import redirect, render
-
 from whatwasthatbookcalled.books.models import Comment
 from whatwasthatbookcalled.books.foms import BookForm, CommentForm, FilterSortForm
 from languages import languages
@@ -15,8 +14,19 @@ def index(req):
     filtered_books = BookService.filter_all_by_GET_params(req.GET)
     sorted_books = BookService.sort_filtered_by_GET_params(req.GET, filtered_books)
 
-    context["books"] = sorted_books
     context["filter_sort_form"] = filter_sort_form
+
+    page = req.GET.get("page", 1)
+
+    paginator = Paginator(sorted_books, 6)
+    try:
+        books = paginator.page(page)
+    except PageNotAnInteger:
+        books = paginator.page(1)
+    except EmptyPage:
+        books = paginator.page(paginator.num_pages)
+
+    context["books"] = books
 
     return render(req, "books/index.html", context=context)
 

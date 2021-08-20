@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load custom_timesince %}
+{% load query_transform %}
 
 {% block page_title %}
 Forgotten books
@@ -89,6 +90,32 @@ Forgotten books
 
         </ul>
     </div>
+
+    {% if books.has_other_pages %}
+    <ul class="pagination">
+        {% if books.has_previous %}
+        <li>
+            <a href="?{% query_transform page=books.previous_page_number %}">&laquo;</a>
+        </li>
+        {% else %}
+        <li><span>&laquo;</span></li>
+        {% endif %}
+
+        {% for i in books.paginator.page_range %}
+        {% if books.number == i %}
+        <li class="page-number active"><span>{{ i }}</span></li>
+        {% else %}
+        <li class="page-number"><a href="?{% query_transform page=i %}">{{ i }}</a></li>
+        {% endif %}
+        {% endfor %}
+
+        {% if books.has_next %}
+        <li><a href="?{% query_transform page=books.next_page_number %}">&raquo;</a></li>
+        {% else %}
+        <li><span>&raquo;</span></li>
+        {% endif %}
+    </ul>
+    {% endif %}
 </div>
 
 
