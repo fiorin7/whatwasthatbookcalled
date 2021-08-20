@@ -40,6 +40,12 @@ body {
         #ff6a88 55%,
         #ff99ac 100%
     ); */
+    background: rgb(80, 50, 134);
+    background: linear-gradient(
+        122deg,
+        rgba(80, 50, 134, 1) 37%,
+        rgba(112, 74, 157, 1) 100%
+    );
 
     margin: 0 auto 0.5em;
     color: #f5f5ff;
@@ -171,11 +177,11 @@ body {
 
 .create-form .continue-btn,
 .create-form button[type="submit"] {
-    background-color: rgb(255, 50, 99);
+    background-color: rgba(80, 50, 134, 1);
 }
 
 .create-form .back-btn {
-    background-color: rgb(167, 167, 167);
+    background-color: rgb(119, 119, 119);
 }
 
 .create-form .genre-choices input {
@@ -237,4 +243,38 @@ body {
 .create-form > ul > li > div > p {
     font-size: 0.85em;
     color: rgb(85, 85, 85);
+}
+
+.landing-create-container img {
+    width: 98vw;
+}
+
+.landing-create-container h1 {
+    width: 65rem;
+    margin: auto;
+    margin-top: 2em;
+}
+
+.landing-create-container a {
+    background-color: rgba(80, 50, 134, 1);
+    display: block;
+    color: white;
+    padding: 0.5em 0.7em;
+    border-radius: 0.3em;
+    width: 10em;
+    margin: auto;
+    text-align: center;
+}
+
+label[for="id_year_read"] {
+    position: relative;
+}
+
+label[for="id_year_read"]:after {
+    position: absolute;
+    display: block;
+    content: "*";
+    color: rgb(196, 64, 64);
+    right: -0.7em;
+    top: -0.1em;
 }

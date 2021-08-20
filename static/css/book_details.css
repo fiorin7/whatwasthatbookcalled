@@ -97,6 +97,10 @@
     padding: 0 3em;
 }
 
+.comment-form-container.edit-comment {
+    margin-top: 1.5em;
+}
+
 .comment-form-container form {
     display: flex;
     flex-direction: column;
@@ -152,15 +156,22 @@
 
 .comment-header {
     margin-bottom: 0.5em;
+    display: flex;
+    align-items: center;
 }
 
-.comment-header a {
+.comment-header > a:first-of-type {
     margin-left: 2em;
     /* background-color: rgb(187, 218, 187); */
     background-color: rgb(81, 102, 143);
     padding: 0.2em 0.5em;
     border-radius: 0.3em;
     color: white;
+}
+
+.comment-header .edit-comment-button {
+    margin-left: auto;
+    display: inline-block;
 }
 
 .book-details .comment:not(:last-child) {
@@ -179,14 +190,23 @@
     margin-right: 0.2em;
 }
 
-.author-side-banner a {
+.author-side-banner > a,
+.author-side-banner > label {
     background-color: rgb(138, 122, 148);
     color: white;
     padding: 0.5em 0.7em;
     border-radius: 0.3em;
     position: absolute;
     right: 1em;
+}
+
+.author-side-banner > a {
     top: 13em;
+}
+
+.author-side-banner > label {
+    top: 16.5em;
+    cursor: pointer;
 }
 
 .book-details .posted-time {
@@ -198,4 +218,74 @@
     align-self: center;
     margin-top: 2em;
     margin-left: auto;
+}
+
+.delete-comment-confirmation,
+.delete-book-confirmation {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.945);
+    padding: 2em 3em;
+    box-shadow: 0 0 0.5em rgba(1, 1, 1, 0.2);
+    display: none;
+    width: 30em;
+    border-radius: 0.2em;
+}
+
+input[name="delete-comment"],
+input[name="delete-book"] {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+input[name="delete-comment"]:checked + .delete-comment-confirmation,
+input[name="delete-book"]:checked + .delete-book-confirmation {
+    display: block !important;
+}
+
+#cancel-button-comment,
+#cancel-button {
+    cursor: pointer;
+}
+
+.delete-comment-confirmation button,
+.delete-book-confirmation button {
+    border: none;
+    margin-right: 1em;
+    background-color: inherit;
+}
+
+.delete-comment-confirmation a,
+.delete-book-confirmation a {
+    margin-right: 1em;
+    background-color: #8a7a94;
+    padding: 0.2em 0.7em;
+    color: white;
+    border-radius: 0.2em;
+}
+
+.delete-comment-confirmation .buttons,
+.delete-book-confirmation .buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.delete-comment-confirmation p,
+.delete-book-confirmation p {
+    margin-bottom: 0.5em;
+}
+
+label[for="delete-comment"] {
+    margin-left: 0.7em;
+    border: 0.1em solid rgba(156, 66, 66, 0.7);
+    border-radius: 0.2em;
+    padding: 0.1em 0.2em;
 }

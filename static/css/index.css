@@ -48,8 +48,7 @@
 
 .genres-list .genre {
     white-space: nowrap;
-    background-color: rgba(101, 60, 143, 1);
-
+    background-color: rgb(97, 97, 97);
     margin: 0.2em;
     padding: 0.2em 0.5em;
     color: white;
@@ -108,7 +107,7 @@
 
 .main-book-info.plot:after {
     /* background-color: rgba(250, 97, 70, 0.2); */
-    background-color: rgba(71, 35, 107, 0.95);
+    background-color: rgba(80, 50, 134, 0.95);
 }
 
 .main-book-info.quotes:after {
@@ -154,4 +153,32 @@
 
 .filter-sort select:not(:first-child) {
     margin-right: 1em;
+}
+
+.pagination {
+    display: flex;
+    font-size: 1.2em;
+    margin-top: 2em;
+    margin-right: 5em;
+}
+
+.pagination li {
+    margin-left: 1em;
+}
+.pagination .page-number > * {
+    background-color: white;
+    padding: 0.2em;
+    width: 1.8em;
+    text-align: center;
+    border: 0.01em solid rgba(59, 57, 57, 0.6);
+    display: block;
+}
+
+.pagination li:first-child {
+    margin-left: auto;
+}
+
+.pagination .active span {
+    background-color: rgba(80, 50, 134, 0.95);
+    color: white;
 }
