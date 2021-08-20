@@ -147,3 +147,39 @@ def delete_book(req, book_id):
     return redirect("index")
 
 
+def edit_comment(req, book_id, comment_id):
+    book = BookService.get_by_id(book_id)
+    comment = Comment.objects.get(id=comment_id)
+
+    if req.user.id != comment.user_id:
+        return redirect("details", book_id)
+
+    context = {
+        "book": book,
+        "current_user_photo": req.user.profile.profile_picture_url
+        if req.user.is_authenticated
+        else None,
+        "comment_id": comment.id,
+    }
+
+    if req.method == "GET":
+        comment_form = CommentForm(instance=comment)
+        context["comment_form"] = comment_form
+
+        return render(req, "books/edit-comment.html", context)
+
+    comment_form = CommentForm(req.POST, instance=comment)
+    if comment_form.is_valid():
+        comment.save()
+        return redirect("details", book_id)
+
+    else:
+        context["comment_form"] = comment_form
+
+        return render(req, "books/edit-comment.html", context)
+
+
+def delete_comment(req, book_id, comment_id):
+    comment = Comment.objects.get(id=comment_id)
+    comment.delete()
+    return redirect("details", book_id)

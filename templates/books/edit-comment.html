@@ -1,0 +1,52 @@
+{% extends 'books/details-base.html' %}
+{% load custom_timesince %}
+
+{% block comments %}
+
+{% for comment in book.comments_by_last_modified %}
+
+{% if comment.id == comment_id %}
+<div class="comment-form-container edit-comment">
+    <img src={{current_user_photo}} alt="profile picture">
+    <form method="POST">
+        {{comment_form}}
+        <button type="submit">Post</button>
+    </form>
+</div>
+{% else %}
+<div class="comment">
+    <img src={{comment.user.profile.profile_picture_url}} alt=" comment photo">
+    <div class="comment-body">
+        <div class="comment-header"><span class="username">{{comment.user}}</span>
+
+            <span class="posted-time">{{comment.last_modified|custom_timesince }}</span>
+
+            {% if user.id == book.user.id and not book.solved%}
+            <a href={% url 'solution pick' book.id comment.id %}><i class="fas fa-check-square"></i>
+                Mark as solution</a>
+            {% endif %}
+
+            {% if user.id == comment.user.id %}
+            <a href={% url 'edit comment' book.id comment.id %} class="edit-comment-button">Edit</a>
+            <label for="delete-comment">Delete</label>
+            <input type="checkbox" name="delete-comment" id="delete-comment">
+            <div class="delete-comment-confirmation" id="delete-comment-confirmation">
+                <p>Are you sure you want to delete this comment?</p>
+                <div class="buttons">
+                    <button id="cancel-button-comment">Cancel</button>
+                    <a href={% url "delete comment" book.id comemnt.id %}>Yes</a>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if comment.is_solution %}
+            <span class="solution-badge"><i class="fas fa-check-square"></i>SOLUTION</span>
+            {% endif %}
+
+        </div>
+        <p>{{comment.text}}</p>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+{% endblock comments %}
