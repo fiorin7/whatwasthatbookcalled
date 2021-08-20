@@ -3,5 +3,5 @@ from django.conf.urls import url
 
 
 urlpatterns = [
-    url("", landing_page, name="landing page"),
+    url(r"^$", landing_page, name="landing page"),
 ]

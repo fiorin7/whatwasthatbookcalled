@@ -24,5 +24,5 @@ urlpatterns = [
     path("books/", include("whatwasthatbookcalled.books.urls")),
     path("auth/", include("whatwasthatbookcalled.books_auth.urls")),
     path("profile/", include("whatwasthatbookcalled.profiles.urls")),
-    path("/", include("whatwasthatbookcalled.landing.urls")),
+    path("", include("whatwasthatbookcalled.landing.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
