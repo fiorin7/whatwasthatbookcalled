@@ -133,3 +133,17 @@ def edit_book(req, book_id):
     else:
         context["form"] = form
         return render(req, "books/edit-book.html", context)
+
+
+@login_required
+def delete_book(req, book_id):
+    book = BookService.get_by_id(id=book_id)
+
+    if book.user != req.user:
+        return redirect("details", book_id)
+
+    book.delete()
+
+    return redirect("index")
+
+

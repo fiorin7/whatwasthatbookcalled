@@ -1,6 +1,7 @@
 from django.urls.conf import path
 from whatwasthatbookcalled.books.views import (
     create,
+    delete_book,
     details,
     edit_book,
     index,
@@ -17,5 +18,5 @@ urlpatterns = [
         mark_comment_as_solution,
         name="solution pick",
     ),
-    path("edit-book/<int:book_id>", edit_book, name="edit book"),
+    path("<int:book_id>/delete", delete_book, name="delete"),
 ]
