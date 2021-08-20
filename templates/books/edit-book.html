@@ -15,7 +15,7 @@ Edit Book
             <img src={{book_user_photo}} alt="profile-picture" />
             <span>{{book_user}}</span>
         </div>
-        <a href={% url 'edit book' book_id %}>Edit Book Data</a>
+        <a href={% url 'edit' book_id %}>Edit Book Data</a>
     </div>
     <div class="fields">
         <form  method="POST" class="create-form" novalidate>
@@ -83,8 +83,8 @@ Edit Book
                     {{ form.cover_description }}
                 </li>
             </ul>
-            {{ form.genre.errors }}
             <ul>
+                {{ form.genre.errors }}
                 <li class="genre-field">
                     <div>
                         {{ form.genre.label_tag }}
@@ -93,7 +93,8 @@ Edit Book
                     <ul id="id_genre" class="genre-choices">
                         {% for choice_id, choice_label in form.genre.field.choices %}
                         <li>
-                            <input type="checkbox" name="genre" value={{choice_id}} id="{{choice_id}}">
+                            <input type="checkbox" name="genre" value={{choice_id}} id="{{choice_id}}"
+                                {% if choice_id in book_genres_ids %} checked {% endif %}>
                             <label for="{{choice_id}}">{{choice_label}}</label>
 
                         </li>
