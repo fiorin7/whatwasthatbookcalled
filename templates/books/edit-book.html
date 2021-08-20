@@ -18,7 +18,7 @@ Edit Book
         <a href={% url 'edit book' book_id %}>Edit Book Data</a>
     </div>
     <div class="fields">
-        <form action="{% url 'create' %}" method="POST" class="create-form" novalidate>
+        <form  method="POST" class="create-form" novalidate>
             {% csrf_token %}
             {{form.non_field_errors}}
             <ul>

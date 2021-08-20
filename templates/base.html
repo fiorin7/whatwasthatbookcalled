@@ -24,7 +24,7 @@
 <body>
     <nav class="site-nav">
         <ul>
-            <li><a href="/home">Home </a> </li>
+            <li><a href={% url 'landing page' %}>Home </a> </li>
             <li><a href={% url 'index' %}>All books</a></li>
             <li><a href={% url 'create' %}>Describe a book</a></li>
         </ul>
@@ -44,7 +44,7 @@
         </svg>
         <ul class="profile-nav">
             {% if user.is_authenticated %}
-            <li><a href="/profile">Profile</a></li>
+            <li><a href={% url 'profile' %}>Profile</a></li>
             <li><a href={% url 'sign out' %}>Logout</a></li>
 
             {% else %}
