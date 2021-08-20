@@ -6,13 +6,13 @@ from whatwasthatbookcalled.books.views import (
     details,
     edit_book,
     edit_comment,
-    index,
+    all_books,
     mark_comment_as_solution,
 )
 
 
 urlpatterns = [
-    path("", index, name="index"),
+    path("", all_books, name="all books"),
     path("create/", create, name="create"),
     path("<int:id>/details", details, name="details"),
     path(

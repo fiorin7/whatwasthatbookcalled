@@ -8,7 +8,7 @@ from whatwasthatbookcalled.books.foms import BookForm, CommentForm, FilterSortFo
 from languages import languages
 
 
-def index(req):
+def all_books(req):
     filter_sort_form = FilterSortForm(req.GET)
     context = {"languages": languages}
     filtered_books = BookService.filter_all_by_GET_params(req.GET)
@@ -28,7 +28,7 @@ def index(req):
 
     context["books"] = books
 
-    return render(req, "books/index.html", context=context)
+    return render(req, "books/all-books.html", context=context)
 
 
 @login_required
@@ -44,7 +44,7 @@ def create(req):
         book = BookService.get_book_with_user_and_filled_fields(form, req.user)
         book.save()
         form.save_m2m()
-        return redirect("index")
+        return redirect("all books")
 
     else:
         first_error_page = get_first_error_page(form.errors)
@@ -144,7 +144,7 @@ def delete_book(req, book_id):
 
     book.delete()
 
-    return redirect("index")
+    return redirect("all books")
 
 
 def edit_comment(req, book_id, comment_id):
