@@ -44,9 +44,10 @@
 .site-logo {
     /* height: 6em; */
     position: absolute;
-    left: 50%;
+    left: 47%;
     top: -0.1em;
     background-color: white;
+    /* transform: translate(50%, -50%); */
     /* top: 0.2em; */
     /* background: rgb(58, 81, 180);
     background: linear-gradient(
@@ -58,4 +59,12 @@
     padding: 1em;
     border-radius: 20%;
     box-shadow: 0 0 0.5em rgba(1, 1, 1, 0.1);
+}
+
+.sign-up-button {
+    /* border: 0.1em solid rgb(90, 46, 90); */
+    border-radius: 0.2em;
+    background-color: rgba(80, 50, 134, 0.95);
+    color: white !important;
+    padding: 0.2em 0.5em;
 }
