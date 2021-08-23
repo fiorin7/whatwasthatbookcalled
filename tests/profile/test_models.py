@@ -16,7 +16,7 @@ class ProfileTest(TestCase):
         image = ImageFile(file, name=file.name)
         p = Profile(profile_picture=image, user=user)
         self.assertNotEqual(
-            p.profile_picture_url, "/static/images/default_profile_picture.jpg"
+            p.profile_picture_url, "/static/images/default_profile_picture.png"
         )
 
     def test_WhenNoProfilePicture_ReturnDefaultProfilePuctureUrl(self):
@@ -25,5 +25,5 @@ class ProfileTest(TestCase):
         )
         p = Profile(user=user)
         self.assertEqual(
-            p.profile_picture_url, "/static/images/default_profile_picture.jpg"
+            p.profile_picture_url, "/static/images/default_profile_picture.png"
         )

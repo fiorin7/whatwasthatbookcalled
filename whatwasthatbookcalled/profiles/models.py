@@ -15,4 +15,4 @@ class Profile(models.Model):
         if self.profile_picture:
             return self.profile_picture.url
         else:
-            return static("images/default_profile_picture.jpg")
+            return static("images/default_profile_picture.png")
