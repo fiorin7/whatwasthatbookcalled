@@ -43,8 +43,8 @@ def sort_filtered_by_GET_params(get_req, filtered_books):
     elif sort_by == "info-amount":
         books = filtered_books.order_by(order_prefix + "filled_fields_count")
     elif sort_by == "popularity":
-        books = filtered_books.annotate(comment_count=Count("comment")).order_by(
-            order_prefix + "comment_count"
+        books = filtered_books.annotate(comment_count_sort=Count("comment")).order_by(
+            order_prefix + "comment_count_sort"
         )
 
     return books
