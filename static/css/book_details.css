@@ -59,6 +59,7 @@
 
 .book-details .fields {
     margin-right: 9em;
+    margin-bottom: 5em;
 }
 
 .book-details .short-fields {
@@ -160,7 +161,7 @@
     align-items: center;
 }
 
-.comment-header > a:first-of-type {
+.comment-header > a:first-of-type:not(.edit-comment-button) {
     margin-left: 2em;
     /* background-color: rgb(187, 218, 187); */
     background-color: rgb(81, 102, 143);
@@ -287,5 +288,6 @@ label[for="delete-comment"] {
     margin-left: 0.7em;
     border: 0.1em solid rgba(156, 66, 66, 0.7);
     border-radius: 0.2em;
+    cursor: pointer;
     padding: 0.1em 0.2em;
 }
