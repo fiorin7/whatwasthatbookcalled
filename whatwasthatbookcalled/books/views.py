@@ -128,7 +128,9 @@ def edit_book(req, book_id):
 
     form = BookForm(req.POST, instance=book)
     if form.is_valid():
-        form.save()
+        book = BookService.get_book_with_user_and_filled_fields(form, req.user)
+        book.save()
+        form.save_m2m()
         return redirect("details", book_id)
     else:
         context["form"] = form
