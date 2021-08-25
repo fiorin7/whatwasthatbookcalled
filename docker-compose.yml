@@ -6,6 +6,7 @@ services:
             - "8000:8000"
         volumes:
             - ./whatwasthatbookcalled:/app/whatwasthatbookcalled
+            - media:/app/media
         environment:
             - POSTGRES_USERNAME
             - POSTGRES_PASSWORD
@@ -17,3 +18,6 @@ services:
             - 12345:5432
         environment:
             POSTGRES_DB: find_book_name
+
+volumes:
+    media:
