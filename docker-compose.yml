@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+    web:
+        build: .
+        ports:
+            - "8000:8000"
+        volumes:
+            - ./whatwasthatbookcalled:/app/whatwasthatbookcalled
+        environment:
+            - POSTGRES_USERNAME
+            - POSTGRES_PASSWORD
+            - SECRET_KEY
+    db:
+        image: "postgres"
+        ports:
+            - 12345:5432
+        environment:
+            POSTGRES_DB: find_book_name
