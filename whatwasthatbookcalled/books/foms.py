@@ -86,7 +86,11 @@ class BookForm(forms.ModelForm):
 
 
 class FilterSortForm(forms.Form):
-    GENRES_CHOICES = [(x.id, x.name) for x in BookGenre.objects.all()]
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        GENRES_CHOICES = [(x.id, x.name) for x in BookGenre.objects.all()]
+        self.fields["genre"].choices = [("", "Genre")] + GENRES_CHOICES
+
     SOVED_CHOICES = ((None, "Status"), (True, "Solved"), (False, "Not solved"))
     SORT_CHOICES = (
         ("date", "Posting date"),
@@ -102,7 +106,7 @@ class FilterSortForm(forms.Form):
     )
     genre = forms.ChoiceField(
         required=False,
-        choices=[("", "Genre")] + GENRES_CHOICES,
+        choices=[],
         widget=Select(attrs={"onchange": "this.form.submit();"}),
         label="",
     )
