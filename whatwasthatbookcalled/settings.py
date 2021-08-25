@@ -81,7 +81,7 @@ DATABASES = {
         "NAME": "find_book_name",
         "USER": os.environ.get("POSTGRES_USERNAME") or "postgres",
         "PASSWORD": os.environ.get("POSTGRES_PASSWORD") or "postgres",
-        "HOST": "db",
+        "HOST": os.environ.get("POSTGRES_HOST") or "127.0.0.1",
         "PORT": "5432",
     }
 }

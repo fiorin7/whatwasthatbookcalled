@@ -9,6 +9,7 @@ services:
         environment:
             - POSTGRES_USERNAME
             - POSTGRES_PASSWORD
+            - POSTGRES_HOST
             - SECRET_KEY
     db:
         image: "postgres"
