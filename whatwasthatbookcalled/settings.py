@@ -10,21 +10,17 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-import json
 import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-with open(os.path.join(BASE_DIR, "config.json")) as config_file:
-    config = json.load(config_file)
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config["SECRET_KEY"]
+SECRET_KEY = os.environ.get("SECRET_KEY") or "SECRET"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -83,9 +79,9 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "find_book_name",
-        "USER": config["DB_USERNAME"],
-        "PASSWORD": config["DB_PASSWORD"],
-        "HOST": "127.0.0.1",
+        "USER": os.environ.get("POSTGRES_USERNAME") or "postgres",
+        "PASSWORD": os.environ.get("POSTGRES_PASSWORD") or "postgres",
+        "HOST": "db",
         "PORT": "5432",
     }
 }
