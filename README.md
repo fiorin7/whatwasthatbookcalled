@@ -30,13 +30,14 @@ Alternatively, install dependencies from `requirements.txt` and set up a `venv`.
 
 ## Configuration
 
-Configuration is done with a `config.json` file. Currently, the following options are supported:
+Configuration is done with environment variables. Currently, the following options are supported:
 
-| Name        | Description               | Default      |
-| ----------- | ------------------------- | ------------ |
-| DB_USERNAME | Your PostgreSQL username  | "postgres"   |
-| DB_PASSWORD | Your PostgreSQL password  | "postgres"   |
-| SECRET_KEY  | Secret key used by Django | "SECRET KEY" |
+| Name              | Description               | Default     |
+| ----------------- | ------------------------- | ----------- |
+| POSTGRES_USERNAME | Your PostgreSQL username  | "postgres"  |
+| POSTGRES_PASSWORD | Your PostgreSQL password  | "postgres"  |
+| POSTGRES_HOST     | Your PostgreSQL host      | "127.0.0.1" |
+| SECRET_KEY        | Secret key used by Django | "SECRET"    |
 
 Defaults are set in `config.example.json` which you can edit and rename for easy setup.
 
